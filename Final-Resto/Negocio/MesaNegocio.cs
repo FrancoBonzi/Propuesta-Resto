@@ -163,7 +163,7 @@ namespace Negocio
                 datos.setearProcedimiento("EliminarMesas");
                 datos.setearParametro("@IdMesa", id);
 
-                datos.EjecutarLectura();
+                datos.ejecutarAccion();
             }
             catch(Exception ex)
             {
