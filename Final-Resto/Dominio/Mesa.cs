@@ -12,6 +12,10 @@ namespace Dominio
 
         public int NumeroMesa { get; set; }
 
+        public int? IdMozo { get; set; }
+
+        public int Disponible { get; set; }
+
         public int CapacidadMesa { get; set; }
     }
 }
