@@ -22,7 +22,7 @@ namespace Negocio
 
         public AccesoDatos()
         {
-
+            /// Falta conectar la Base de datos
         }
 
         public void setearConsulta(string consulta)
