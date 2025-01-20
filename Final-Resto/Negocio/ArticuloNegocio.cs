@@ -45,6 +45,54 @@ namespace Negocio
             }
         }
 
+        public void AgregarArticulo(Articulo nuevo)
+        {
+            AccesoDatos datos = new AccesoDatos();
+
+            try
+            {
+                datos.setearProcedimiento("AltaArticulos");
+                datos.setearParametro("@Nombre", nuevo.Nombre);
+                datos.setearParametro("@Descripcion", nuevo.Descripcion);
+                datos.setearParametro("@Precio", nuevo.Precio);
+
+                datos.ejecutarAccion();
+            }
+            catch(Exception ex)
+            {
+                throw new Exception("Error al agregar el nuevo articulo:"+ ex.Message);
+            }
+            finally
+            {
+                datos.cerrarConexion();
+            }
+        }
+
+        public void ModificarArticulo(Articulo nuevo)
+        {
+            AccesoDatos datos = new AccesoDatos();
+
+            try
+            {
+                datos.setearProcedimiento("ModificarArticulos");
+
+                datos.setearParametro("@IdArticulo", nuevo.IdArticulo);
+                datos.setearParametro("@Nombre", nuevo.Nombre);
+                datos.setearParametro("@Descripcion", nuevo.Descripcion);
+                datos.setearParametro("@Precio", nuevo.Precio);
+
+                datos.ejecutarAccion();
+            }
+            catch(Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                datos.cerrarConexion(); 
+            }
+        }
+
         public void EliminarArticulo(int id)
         {
             AccesoDatos datos = new AccesoDatos();
