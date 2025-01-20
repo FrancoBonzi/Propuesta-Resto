@@ -70,6 +70,90 @@ namespace Negocio
             }
         }
 
+        public List<Mesa> ListaPorMozo()
+        {
+            List<Mesa> lista = new List<Mesa>();
+            AccesoDatos datos = new AccesoDatos();
+
+            try
+            {
+                datos.setearConsulta("SELECT IdMesa,IdMozo,Numero,Capacidad,Disponible FROM Mesas WHERE Disponible=0");
+                datos.EjecutarLectura();
+
+                while (datos.Lector.Read())
+                {
+                    Mesa aux = new Mesa();
+
+                    aux.IdMesa = (int)datos.Lector["IdMesa"];
+                    aux.NumeroMesa = (int)datos.Lector["NumeroMesa"];
+                    aux.IdMozo = (int)datos.Lector["IdMozo"];
+                    aux.Disponible = (int)datos.Lector["Disponible"];
+                    aux.CapacidadMesa = (int)datos.Lector["CapacidadMesa"];
+
+                    lista.Add(aux);
+                }
+
+                return lista;
+            }
+            catch(Exception ex)
+            {
+                throw new Exception("Error al querer listar las mesas "+ex.Message);
+            }
+            finally
+            {
+                datos.cerrarConexion();
+            }
+        }
+
+        public void AgregarMesa(Mesa nuevo)
+        {
+            AccesoDatos datos = new AccesoDatos();
+
+            try
+            {
+                datos.setearProcedimiento("AltaMesas");
+                datos.setearParametro("@NumeroMesa", nuevo.NumeroMesa);
+                datos.setearParametro("@Capacidad", nuevo.CapacidadMesa);
+                datos.setearParametro("@Disponible", nuevo.Disponible);
+
+                datos.ejecutarAccion();
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error al agregar la mesa "+ex.Message);
+            }
+            finally
+            {
+                datos.cerrarConexion();
+            }
+        }
+
+        public void ModificarMesa(Mesa nuevo)
+        {
+            AccesoDatos datos = new AccesoDatos();
+
+            try
+            {
+                datos.setearProcedimiento("ModificarMesas");
+
+                datos.setearParametro("@IdMesa", nuevo.IdMesa);
+                datos.setearParametro("@NumeroMesa", nuevo.NumeroMesa);
+                datos.setearParametro("@IdMozo", nuevo.IdMozo);
+                datos.setearParametro("@Disponible", nuevo.Disponible);
+                datos.setearParametro("@Capacidad", nuevo.CapacidadMesa);
+
+                datos.ejecutarAccion();
+            }
+            catch(Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                datos.cerrarConexion();
+            }
+        }
+
         public void EliminarMesa(int id)
         {
             AccesoDatos datos = new AccesoDatos();
