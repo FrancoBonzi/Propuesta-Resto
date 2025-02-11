@@ -18,7 +18,7 @@ namespace Negocio
 
             try
             {
-                datos.setearConsulta("SELECT IdArticulo,Nombre,Descripcion,Precio FROM Articulos");
+                datos.setearConsulta("SELECT IdArticulo,Nombre,Descripcion,Precio,StockActual,StockMinimo FROM Articulos");
 
                 datos.EjecutarLectura();
 
@@ -30,6 +30,8 @@ namespace Negocio
                     aux.Nombre = (string)datos.Lector["Nombre"];
                     aux.Descripcion = (string)datos.Lector["Descripcion"];
                     aux.Precio = (decimal)datos.Lector["Precio"];
+                    aux.StockActual = (int)datos.Lector["Stock Actual"];
+                    aux.StockMinimo = (int)datos.Lector["Stock Minimo"];
 
                     lista.Add(aux);
                 }
@@ -55,6 +57,8 @@ namespace Negocio
                 datos.setearParametro("@Nombre", nuevo.Nombre);
                 datos.setearParametro("@Descripcion", nuevo.Descripcion);
                 datos.setearParametro("@Precio", nuevo.Precio);
+                datos.setearParametro("@StockActual", nuevo.StockActual);
+                datos.setearParametro("@StockMinimo", nuevo.StockMinimo);
 
                 datos.ejecutarAccion();
             }
@@ -80,6 +84,8 @@ namespace Negocio
                 datos.setearParametro("@Nombre", nuevo.Nombre);
                 datos.setearParametro("@Descripcion", nuevo.Descripcion);
                 datos.setearParametro("@Precio", nuevo.Precio);
+                datos.setearParametro("@StockActual", nuevo.StockActual);
+                datos.setearParametro("@StockMinimo", nuevo.StockMinimo);
 
                 datos.ejecutarAccion();
             }

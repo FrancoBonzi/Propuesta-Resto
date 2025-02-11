@@ -12,7 +12,9 @@ namespace Dominio
 
         public int NumeroMesa { get; set; }
 
-        public int? IdMozo { get; set; }
+       
+       ///public int? IdMozo { get; set; } CORREGIR
+       
 
         public int Disponible { get; set; }
 

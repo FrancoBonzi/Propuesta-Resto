@@ -17,5 +17,7 @@ namespace Dominio
         public int IdArticulo { get; set; }
 
         public int IdMozo { get; set; }
+
+        public Decimal Monto { get; set; }
     }
 }
