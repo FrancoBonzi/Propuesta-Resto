@@ -25,7 +25,7 @@ namespace Negocio
                     Mesa aux = new Mesa();
 
                     aux.IdMesa = (int)datos.Lector["IdMesa"];
-                    aux.IdMozo = (int)datos.Lector["IdMozo"];
+                    ///aux.IdMozo = (int)datos.Lector["IdMozo"];
                     aux.NumeroMesa = (int)datos.Lector["NumeroMesa"];
                     aux.CapacidadMesa = (int)datos.Lector["CapacidadMesa"];
                     aux.Disponible = (int)datos.Lector["Disponible"];
@@ -55,7 +55,7 @@ namespace Negocio
                 datos.setearProcedimiento("AsignarMozo");
 
                 datos.setearParametro("@IdMesa", mesa.IdMesa);
-                datos.setearParametro("@IdMozo", mesa.IdMozo);
+                //datos.setearParametro("@IdMozo", mesa.IdMozo);
                 datos.setearParametro("@Disponible", mesa.Disponible);
 
                 datos.ejecutarAccion();
@@ -86,7 +86,7 @@ namespace Negocio
 
                     aux.IdMesa = (int)datos.Lector["IdMesa"];
                     aux.NumeroMesa = (int)datos.Lector["NumeroMesa"];
-                    aux.IdMozo = (int)datos.Lector["IdMozo"];
+                    //aux.IdMozo = (int)datos.Lector["IdMozo"];
                     aux.Disponible = (int)datos.Lector["Disponible"];
                     aux.CapacidadMesa = (int)datos.Lector["CapacidadMesa"];
 
@@ -138,7 +138,7 @@ namespace Negocio
 
                 datos.setearParametro("@IdMesa", nuevo.IdMesa);
                 datos.setearParametro("@NumeroMesa", nuevo.NumeroMesa);
-                datos.setearParametro("@IdMozo", nuevo.IdMozo);
+                //datos.setearParametro("@IdMozo", nuevo.IdMozo);
                 datos.setearParametro("@Disponible", nuevo.Disponible);
                 datos.setearParametro("@Capacidad", nuevo.CapacidadMesa);
 
