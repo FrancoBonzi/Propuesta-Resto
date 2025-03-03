@@ -22,7 +22,12 @@ namespace Negocio
 
         public AccesoDatos()
         {
-            /// Falta conectar la Base de datos
+            // Cadena de conexión directa en el código
+            string connectionString = "Data Source=.\\SQLEXPRESS;Initial Catalog=BBDD_Resto;Integrated Security=True";
+
+            // Conectar a la base de datos usando la cadena de conexión
+            conexion = new SqlConnection(connectionString);
+            comando = new SqlCommand();
         }
 
         public void setearConsulta(string consulta)
