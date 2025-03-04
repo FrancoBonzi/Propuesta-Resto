@@ -83,14 +83,6 @@ namespace Negocio
 
 
 
-
-
-
-
-
-
-
-
         public void AgregarUsuario(Usuario nuevo)
         {
             AccesoDatos datos = new AccesoDatos();
@@ -142,6 +134,37 @@ namespace Negocio
                 datos.cerrarConexion();
 
             }
+        }
+
+
+        public List<Usuario> listarUsuariosPorRol(string rol)
+        {
+            List<Usuario> lista = new List<Usuario>();
+            AccesoDatos datos = new AccesoDatos();
+
+            try
+            {
+                datos.setearConsulta("SELECT Id, Nombre FROM Usuarios WHERE Rol = @Rol");
+                datos.setearParametro("@Rol", rol);
+                datos.EjecutarLectura();
+
+                while (datos.Lector.Read())
+                {
+                    Usuario aux = new Usuario
+                    {
+                        Id = Convert.ToInt32(datos.Lector["Id"]),
+                        Nombre = datos.Lector["Nombre"].ToString()
+                    };
+                    lista.Add(aux);
+                }
+
+                return lista;
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error al listar los usuarios: " + ex.Message);
+            }
+
         }
     }
 

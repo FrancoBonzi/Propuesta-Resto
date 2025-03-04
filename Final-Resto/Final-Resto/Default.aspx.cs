@@ -20,7 +20,7 @@ namespace Final_Resto
             UsuarioNegocio negocio = new UsuarioNegocio();
             Usuario usuario = negocio.ObtenerUsuario(username);
 
-            if (usuario != null && usuario.Contrasena == password) // En producción, usa encriptación
+            if (usuario != null && usuario.Contrasena == password) 
             {
                 // Guardar en sesión
                 Session["Usuario"] = usuario.UsuarioNombre;

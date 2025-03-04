@@ -15,24 +15,6 @@ namespace Final_Resto
     {
 
         /// <summary>
-        /// Control txtMesa.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtMesa;
-
-        /// <summary>
-        /// Control btnAgregarMesa.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnAgregarMesa;
-
-        /// <summary>
         /// Control txtIdMesa.
         /// </summary>
         /// <remarks>
@@ -40,15 +22,6 @@ namespace Final_Resto
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtIdMesa;
-
-        /// <summary>
-        /// Control btnModificarMesa.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnModificarMesa;
 
         /// <summary>
         /// Control btnEliminarMesa.
@@ -60,31 +33,31 @@ namespace Final_Resto
         protected global::System.Web.UI.WebControls.Button btnEliminarMesa;
 
         /// <summary>
-        /// Control modificar.
+        /// Control ddlMozos.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl modificar;
+        protected global::System.Web.UI.WebControls.DropDownList ddlMozos;
 
         /// <summary>
-        /// Control txtNuevoNombre.
+        /// Control btnAsignarMozo.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtNuevoNombre;
+        protected global::System.Web.UI.WebControls.Button btnAsignarMozo;
 
         /// <summary>
-        /// Control btnAceptarModificacion.
+        /// Control lblMensaje.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnAceptarModificacion;
+        protected global::System.Web.UI.WebControls.Label lblMensaje;
 
         /// <summary>
         /// Control gvMesa.

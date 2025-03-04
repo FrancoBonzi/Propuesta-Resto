@@ -24,6 +24,7 @@ namespace Negocio
                     Mesa aux = new Mesa();
 
                     aux.IdMesa = datos.Lector["IdMesa"] != DBNull.Value ? Convert.ToInt32(datos.Lector["IdMesa"]) : 0;
+                    aux.IdMozo = datos.Lector["IdMozo"] != DBNull.Value ? Convert.ToInt32(datos.Lector["IdMozo"]) : 0;
                     aux.NumeroMesa = datos.Lector["Numero"] != DBNull.Value ? Convert.ToInt32(datos.Lector["Numero"]) : 0;
                     aux.CapacidadMesa = datos.Lector["Capacidad"] != DBNull.Value ? Convert.ToInt32(datos.Lector["Capacidad"]) : 0;
                     aux.Disponible = datos.Lector["Disponible"] != DBNull.Value ? Convert.ToInt32(datos.Lector["Disponible"]) : 0;
@@ -172,6 +173,115 @@ namespace Negocio
                 datos.cerrarConexion();
             }
         }
+
+
+
+        public void AsignarMozo(Mesa mesa, int idMozo)
+        {
+            AccesoDatos datos = new AccesoDatos();
+
+            try
+            {
+                datos.setearConsulta("UPDATE Mesas SET IdMozo = @IdMozo, Disponible = @Disponible WHERE IdMesa = @IdMesa");
+
+                datos.setearParametro("@IdMozo", idMozo);
+                datos.setearParametro("@IdMesa", mesa.IdMesa);
+                datos.setearParametro("@Disponible", mesa.Disponible);
+
+                datos.ejecutarAccion();
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error al asignar el mozo: " + ex.Message);
+            }
+            finally
+            {
+                datos.cerrarConexion();
+            }
+        }
+
+
+
+        public List<Mesa> ListaPorMozo(int idMozo)
+        {
+            List<Mesa> lista = new List<Mesa>();
+            AccesoDatos datos = new AccesoDatos();
+
+            try
+            {
+                datos.setearConsulta("SELECT IdMesa, IdMozo, Numero, Capacidad, Disponible FROM Mesas WHERE IdMozo = @IdMozo");
+                datos.setearParametro("@IdMozo", idMozo);
+                datos.EjecutarLectura();
+
+                while (datos.Lector.Read())
+                {
+                    Mesa aux = new Mesa
+                    {
+                        IdMesa = Convert.ToInt32(datos.Lector["IdMesa"]),
+                        IdMozo = Convert.ToInt32(datos.Lector["IdMozo"]),
+                        NumeroMesa = Convert.ToInt32(datos.Lector["Numero"]),
+                        CapacidadMesa = Convert.ToInt32(datos.Lector["Capacidad"]),
+                        Disponible = Convert.ToInt32(datos.Lector["Disponible"])
+                    };
+
+                    lista.Add(aux);
+                }
+
+                return lista;
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error al obtener las mesas del mozo: " + ex.Message);
+            }
+            finally
+            {
+                datos.cerrarConexion();
+            }
+        }
+
+
+
+        public void CerrarMesa(int idMesa)
+        {
+            AccesoDatos datos = new AccesoDatos();
+
+            try
+            {
+                datos.setearConsulta("UPDATE Mesas SET Disponible = 1 WHERE IdMesa = @IdMesa");
+                datos.setearParametro("@IdMesa", idMesa);
+                datos.ejecutarAccion();
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error al cerrar la mesa: " + ex.Message);
+            }
+            finally
+            {
+                datos.cerrarConexion();
+            }
+        }
+
+        public void AbrirMesa(int idMesa)
+        {
+            AccesoDatos datos = new AccesoDatos();
+
+            try
+            {
+                datos.setearConsulta("UPDATE Mesas SET Disponible = 0 WHERE IdMesa = @IdMesa");
+                datos.setearParametro("@IdMesa", idMesa);
+                datos.ejecutarAccion();
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error al abrir la mesa: " + ex.Message);
+            }
+            finally
+            {
+                datos.cerrarConexion();
+            }
+        }
+
+
 
     }
 }
