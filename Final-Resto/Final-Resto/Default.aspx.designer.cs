@@ -24,6 +24,15 @@ namespace Final_Resto
         protected global::System.Web.UI.WebControls.TextBox txtUsername;
 
         /// <summary>
+        /// Control rfvUsername.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator rfvUsername;
+
+        /// <summary>
         /// Control txtPassword.
         /// </summary>
         /// <remarks>
@@ -33,6 +42,15 @@ namespace Final_Resto
         protected global::System.Web.UI.WebControls.TextBox txtPassword;
 
         /// <summary>
+        /// Control rfvPassword.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator rfvPassword;
+
+        /// <summary>
         /// Control btnLogin.
         /// </summary>
         /// <remarks>
@@ -40,5 +58,14 @@ namespace Final_Resto
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button btnLogin;
+
+        /// <summary>
+        /// Control lblMessage.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblMessage;
     }
 }
