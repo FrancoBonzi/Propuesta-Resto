@@ -1,25 +1,23 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Data.SqlTypes;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using static System.Net.Mime.MediaTypeNames;
 
-namespace Dominio
+namespace Final_Resto
 {
     public class Usuario
     {
-        public int IdUsuario { get; set; }
+        public int Id { get; set; }
+        public string Nombre { get; set; }
+        public string UsuarioNombre { get; set; }
 
         [DisplayName("Contraseña")]
-        public string Contrasenia { get; set; }
+        public string Contrasena { get; set; }
+        public string Rol { get; set; } 
 
-        public string Nombre { get; set; }
-
-        public string Apellido { get; set; }
-
-        public string Email { get; set; }
-
-        public string Dni { get; set; }
     }
 }

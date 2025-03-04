@@ -12,8 +12,38 @@ namespace Final_Resto
         protected void Page_Load(object sender, EventArgs e)
         {
 
+            if (!IsPostBack)
+            {
+                // Verifica si el usuario tiene sesión activa
+                if (Session["Rol"] != null)
+                {
+                    btnLogout.Visible = true;
+                    string rolUsuario = Session["Rol"].ToString();
+                
+
+
+                    if (rolUsuario != "Gerente")
+                    {
+                        
+                    }
+                }
+                else
+                {
+                    btnLogout.Visible = false;
+                }
+
+            }
         }
+
+
+        protected void btnLogout_Click(object sender, EventArgs e)
+        {
+            Session.Clear();
+            Session.Abandon();
+            Response.Redirect("Default.aspx"); 
+        }
+
+
     }
 }
-
 

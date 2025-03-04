@@ -1,14 +1,12 @@
 ﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Site.master.cs" Inherits="Final_Resto.SiteMaster" %>
 
 <!DOCTYPE html>
-
 <html lang="es">
 <head runat="server">
-
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title><%: Page.Title %> - BONZI LOGULLO - ITALY FOOD </title>
+    <title><%: Page.Title %> - BONZI LOGULLO - ITALY FOOD</title>
 
     <asp:PlaceHolder runat="server">
         <%: Scripts.Render("~/bundles/modernizr") %>
@@ -17,93 +15,61 @@
     <link href="~/favicon.ico" rel="shortcut icon" type="image/x-icon" />
     <link rel="stylesheet" type="text/css" href="styles.css" />
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
-
 </head>
+
 <body style="background-color: whitesmoke;">
     <form runat="server">
         <asp:ScriptManager runat="server">
             <Scripts>
-
-                <asp:ScriptReference Name="jquery" />
-                <asp:ScriptReference Name="WebForms.js" Assembly="System.Web" Path="~/Scripts/WebForms/WebForms.js" />
                 <asp:ScriptReference Path="https://code.jquery.com/jquery-3.6.0.min.js" />
                 <asp:ScriptReference Path="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.3/jquery.validate.min.js" />
                 <asp:ScriptReference Path="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.0/js/bootstrap.bundle.min.js" />
             </Scripts>
         </asp:ScriptManager>
 
-<nav class="navbar navbar-expand-sm" style="background-color: #045a34;">
-    <div class="container">
+        <!-- NAVBAR -->
+        <nav class="navbar navbar-expand-sm" style="background-color: #045a34;">
+            <div class="container">
+                <a class="navbar-brand fw-light fst-italic text-white" runat="server" href="~/">
+                    <img src="https://upload.wikimedia.org/wikipedia/en/0/03/Flag_of_Italy.svg" alt="Italia" width="25" height="15" class="me-2">
+                    Resto - ITALY FOOD
+                </a>
 
-        <a class="navbar-brand fw-light fst-italic text-white" runat="server" href="~/">
-            <img src="https://upload.wikimedia.org/wikipedia/en/0/03/Flag_of_Italy.svg" alt="Italia" width="25" height="15" class="me-2">
-            Resto - ITALY FOOD
-        </a>
-        
-        <button class="navbar-toggler text-white" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" 
-            aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        
-        <div class="collapse navbar-collapse" id="navbarNavDropdown">
-            <ul class="navbar-nav ms-auto">
-                <li class="nav-item">
-                    <a class="nav-link fw-bold text-white" runat="server" href="~/GestionVentas">
-                        <span>🍕</span> Vender
-                    </a>
-                </li>
+                <button class="navbar-toggler text-white" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown"
+                    aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
 
-                <li class="nav-item">
-                    <a class="nav-link fw-bold text-white" runat="server" href="~/Factura">Generar Factura</a>
-                </li>
+                <div class="collapse navbar-collapse" id="navbarNavDropdown">
+                    <ul class="navbar-nav ms-auto">
 
-                <li class="nav-item dropdown">
-                     <a class="nav-link dropdown-toggle fw-bold text-white" href="#" id="registrosDropdown" role="button" 
-                        data-bs-toggle="dropdown" aria-expanded="false">
-                        Registros
-                    </a>
-                    <ul class="dropdown-menu" aria-labelledby="registrosDropdown">
-                        <li><a class="dropdown-item" runat="server" href="Registros/RegistroCompras.aspx"> Registro Compras</a></li>
-                        <li><a class="dropdown-item" runat="server" href="Registros/RegistroVentas.aspx"> Registro Ventas</a></li>
+
+                        <li class="nav-item">
+                            <a class="nav-link fw-bold text-white" href="Home.aspx">
+                                <i class="bi bi-house-door-fill"></i> Navegación
+                            </a>
+                        </li>
+
+                        <li class="nav-item">
+                            <asp:LinkButton ID="btnLogout" runat="server" CssClass="nav-link text-white" OnClick="btnLogout_Click">Cerrar Sesión</asp:LinkButton>
+                        </li>
                     </ul>
-                </li>
+                </div>
+            </div>
+        </nav>
 
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle fw-bold text-white" href="#" id="gestionesDropdown" role="button" 
-                        data-bs-toggle="dropdown" aria-expanded="false">
-                        Gestiones
-                    </a>
-                    <ul class="dropdown-menu" aria-labelledby="gestionesDropdown">
-                        <li><a class="dropdown-item" runat="server" href="Proveedor/GestionProveedor.aspx">Gestión de Proveedores</a></li>
-                        <li><a class="dropdown-item" runat="server" href="~/GestionStock.aspx">Stock Actual</a></li>
-                        <li><a class="dropdown-item" runat="server" href="~/GestionCompras.aspx">Gestión de Compras</a></li>
-                        <li><a class="dropdown-item" runat="server" href="~/GestionVentas.aspx">Gestión de Ventas</a></li>
-                        <li><a class="dropdown-item" runat="server" href="~/Producto.aspx">Gestión de Productos</a></li>
-                        <li><a class="dropdown-item" runat="server" href="~/GestionarMarcas.aspx">Gestión de Marcas</a></li>
-                        <li><a class="dropdown-item" runat="server" href="~/GestionarCategorias.aspx">Gestión de Categorias</a></li>
-                        <li><a class="dropdown-item" runat="server" href="~/GestionImagen.aspx">Gestión de Imagenes</a></li>
-                    </ul>
-                </li>
-            </ul>
-        </div>
-    </div>
-</nav>
+
         <div class="container body-content">
-            <asp:ContentPlaceHolder ID="MainContent" runat="server">
-            </asp:ContentPlaceHolder>
+            <asp:ContentPlaceHolder ID="MainContent" runat="server"></asp:ContentPlaceHolder>
             <hr />
 
+
             <footer class="text-center py-3" style="background: linear-gradient(to right, #008C45, #F4F4F4, #CD212A); color: white;">
-                <p class="fw-bold"> &copy; <%: DateTime.Now.Year %> - BONZI LOGULLO - ITALY FOOD</p>
+                <p class="fw-bold">&copy; <%: DateTime.Now.Year %> - BONZI LOGULLO - ITALY FOOD</p>
             </footer>
         </div>
     </form>
 
-    <asp:PlaceHolder runat="server">
-        <%: Scripts.Render("~/Scripts/bootstrap.js") %>
-    </asp:PlaceHolder>
-    
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-
 </body>
 </html>

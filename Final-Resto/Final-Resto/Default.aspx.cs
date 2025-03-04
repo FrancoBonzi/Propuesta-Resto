@@ -1,33 +1,40 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
 using System.Web.UI;
-using System.Web.UI.WebControls;
+using Negocio;
+using Dominio;
 
 namespace Final_Resto
 {
-    public partial class Default : System.Web.UI.Page
+    public partial class Default : Page
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-
+            lblMessage.Text = "";
         }
 
         protected void btnLogin_Click(object sender, EventArgs e)
         {
-            string username = txtUsername.Text;
-            string password = txtPassword.Text;
+            string username = txtUsername.Text.Trim();
+            string password = txtPassword.Text.Trim();
 
-            if (username == "admin" && password == "password123")
+            UsuarioNegocio negocio = new UsuarioNegocio();
+            Usuario usuario = negocio.ObtenerUsuario(username);
+
+            if (usuario != null && usuario.Contrasena == password) // En producción, usa encriptación
             {
-                Response.Redirect("About.aspx");
+                // Guardar en sesión
+                Session["Usuario"] = usuario.UsuarioNombre;
+                Session["Rol"] = usuario.Rol;
+
+                if (usuario.Rol == "Gerente")
+                    Response.Redirect("Home.aspx");
+                else
+                    Response.Redirect("MesasAsignadas.aspx");
             }
             else
             {
-                ClientScript.RegisterStartupScript(this.GetType(),"alert","alert ('Usuario o contraseña incorrectas')"); 
+                lblMessage.Text = "Usuario o contraseña incorrectos.";
             }
-
         }
     }
 }

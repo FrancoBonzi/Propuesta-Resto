@@ -88,7 +88,7 @@ namespace Negocio
 
         public SqlDataReader EjecutarLectura()
         {
-            conexion.Close();
+            conexion.Open();
             comando.Connection = conexion;
             lector = comando.ExecuteReader();
             return lector;

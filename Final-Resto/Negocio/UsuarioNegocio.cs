@@ -1,9 +1,11 @@
-﻿using System;
+﻿using Dominio;
+using Final_Resto;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Dominio;
+
 
 namespace Negocio
 {
@@ -16,7 +18,7 @@ namespace Negocio
 
             try
             {
-                datos.setearConsulta("SELECT IdUsuario,Contrasenia,Nombre,Apellido,Email,Dni FROM Usuarios");
+                datos.setearConsulta("SELECT * FROM Usuarios");
 
                 datos.EjecutarLectura();
 
@@ -24,12 +26,11 @@ namespace Negocio
                 {
                     Usuario aux = new Usuario();
 
-                    aux.IdUsuario = (int)datos.Lector["IdUsuario"];
-                    aux.Contrasenia = (string)datos.Lector["Contrasenia"];
+                    aux.Id = (int)datos.Lector["Id"];
                     aux.Nombre = (string)datos.Lector["Nombre"];
-                    aux.Apellido = (string)datos.Lector["Apellido"];
-                    aux.Email = (string)datos.Lector["Email"];
-                    aux.Dni = (string)datos.Lector["DNI"];
+                    aux.UsuarioNombre = (string)datos.Lector["Usuario"];
+                    aux.Contrasena = (string)datos.Lector["Contrasena"];
+                    aux.Rol = (string)datos.Lector["Rol"];
 
                     lista.Add(aux);
                 }
@@ -45,34 +46,50 @@ namespace Negocio
             }
         }
 
-        public Usuario ObtenerUsuario(int Id)
+        public Usuario ObtenerUsuario(string UsuarioNombre)
         {
             AccesoDatos datos = new AccesoDatos();
+            Usuario aux = null; 
 
             try
             {
-                datos.setearConsulta("SELECT IdUsuario,Contrasenia,Nombre,Email,Dni FROM Usuarios WHERE IdUsuario=@Id");
-                datos.setearParametro("@Id", Id);
+                datos.setearConsulta("SELECT * FROM Usuarios WHERE Usuario = @Usuario");
+                datos.setearParametro("@Usuario", UsuarioNombre);
                 datos.EjecutarLectura();
 
-                Usuario aux = new Usuario();
-
-                while (datos.Lector.Read())
+                if (datos.Lector.Read()) 
                 {
-                    aux.IdUsuario = (int)datos.Lector["IdUsuario"];
-                    aux.Contrasenia = (string)datos.Lector["Contraseña"];
-                    aux.Nombre = (string)datos.Lector["Nombre"];
-                    aux.Apellido = (string)datos.Lector["Apellido"];
-                    aux.Email = (string)datos.Lector["Email"];
-                    aux.Dni = (string)datos.Lector["DNI"];
+                    aux = new Usuario
+                    {
+                        Id = Convert.ToInt32(datos.Lector["Id"]),
+                        Nombre = datos.Lector["Nombre"].ToString(),
+                        UsuarioNombre = datos.Lector["Usuario"].ToString(),
+                        Contrasena = datos.Lector["Contrasena"].ToString(),
+                        Rol = datos.Lector["Rol"].ToString()
+                    };
                 }
-                return aux;
             }
             catch (Exception ex)
             {
-                throw ex;
+                throw new Exception("Error al obtener el usuario: " + ex.Message);
             }
+            finally
+            {
+                datos.cerrarConexion();
+            }
+
+            return aux; 
         }
+
+
+
+
+
+
+
+
+
+
 
         public void AgregarUsuario(Usuario nuevo)
         {
@@ -80,14 +97,18 @@ namespace Negocio
 
             try
             {
-                datos.setearProcedimiento("AltaUsuarios");
-                datos.setearParametro("@Contrasenia", nuevo.Contrasenia);
+
+                datos.setearConsulta("INSERT INTO Usuarios (Nombre, Usuario, Contrasena, Rol) VALUES (@Nombre, @Usuario, @Contrasena, @Rol)");
+
+                datos.setearParametro("@Id", nuevo.Id);
                 datos.setearParametro("@Nombre", nuevo.Nombre);
-                datos.setearParametro("@Apellido", nuevo.Apellido);
-                datos.setearParametro("@Email", nuevo.Email);
-                datos.setearParametro("@Dni", nuevo.Dni);
+                datos.setearParametro("@Usuario", nuevo.UsuarioNombre);
+                datos.setearParametro("@Contrasena", nuevo.Contrasena);
+                datos.setearParametro("@Rol", nuevo.Rol);
 
                 datos.ejecutarAccion();
+
+
             }
             catch (Exception ex)
             {
@@ -99,33 +120,7 @@ namespace Negocio
             }
         }
 
-        public void ModificarUsuario(Usuario nuevo)
-        {
-            AccesoDatos datos = new AccesoDatos();
-
-            try
-            {
-                datos.setearProcedimiento("ModificarUsuarios");
-
-                datos.setearParametro("@IdUsuario", nuevo.IdUsuario);
-                datos.setearParametro("@Contrasenia", nuevo.Contrasenia);
-                datos.setearParametro("@Nombre", nuevo.Nombre);
-                datos.setearParametro("@Apellido", nuevo.Apellido);
-                datos.setearParametro("@Email", nuevo.Email);
-                datos.setearParametro("@DNI", nuevo.Dni);
-
-                datos.ejecutarAccion();
-            }
-            catch (Exception ex)
-            {
-                throw ex;
-            }
-            finally
-            {
-                datos.cerrarConexion();
-            }
-        }
-
+    
         public void EliminarUsuario(int idUsuario)
         {
             AccesoDatos datos = new AccesoDatos();
