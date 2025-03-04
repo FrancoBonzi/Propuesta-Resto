@@ -29,6 +29,13 @@
                             OnClick="btnAsingarMesas_Click" />
                     </td>
                 </tr>   
+
+                 <tr>
+                    <td>
+                        <asp:Button ID="btnestionarMesas" runat="server" Text="Gestionar Mesas" CssClass="btn btn-primary"
+                            OnClick="btnGestionarMesas_Click" />
+                    </td>
+                </tr>  
             </tbody>
         </table>
     </div>

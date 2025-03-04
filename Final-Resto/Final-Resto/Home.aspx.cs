@@ -29,5 +29,10 @@ namespace Final_Resto
             Response.Redirect("MesasAsignadas.aspx");
         }
 
+        protected void btnGestionarMesas_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("Mesas.aspx");
+        }
+
     }
 }
