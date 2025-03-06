@@ -31,8 +31,8 @@ namespace Negocio
                     aux.Descripcion = (string)datos.Lector["Descripcion"];
                     aux.Categoria = (string)datos.Lector["Categoria"];
                     aux.Precio = (decimal)datos.Lector["Precio"];
-                    aux.StockActual = (int)datos.Lector["Stock Actual"];
-                    aux.StockMinimo = (int)datos.Lector["Stock Minimo"];
+                    aux.StockActual = (int)datos.Lector["StockActual"];
+                    aux.StockMinimo = (int)datos.Lector["StockMinimo"];
 
                     lista.Add(aux);
                 }

@@ -10,14 +10,15 @@ namespace Dominio
     {
         public int IdPedido { get; set; }
 
-        public DateTime FechaPedido { get; set; }
 
         public int IdMesa { get; set; }
 
-        public int IdArticulo { get; set; }
-
         public int IdMozo { get; set; }
 
-        public Decimal Monto { get; set; }
+        public DateTime FechaHora { get; set; }
+
+        public DateTime FechaHoraCierre { get; set; }
+
+        public Decimal Total { get; set; }
     }
 }
