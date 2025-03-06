@@ -2,7 +2,7 @@
 
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
     <div class="container">
-        <h2 class="text-center">Gestión de Mesas</h2>
+        <h2 class="text-center mt-4">Gestión de Mesas</h2>
 
         <div class="row">
             <div class="col text-center">
