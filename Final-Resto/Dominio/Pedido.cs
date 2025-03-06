@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Final_Resto;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -11,9 +12,9 @@ namespace Dominio
         public int IdPedido { get; set; }
 
 
-        public int IdMesa { get; set; }
+        public Mesa mesa { get; set; }
 
-        public int IdMozo { get; set; }
+        public Usuario usuario { get; set; }
 
         public DateTime FechaHora { get; set; }
 
