@@ -33,10 +33,9 @@
                         <asp:BoundField DataField="Descripcion" HeaderText="Descripción" />
                         <asp:BoundField DataField="Categoria" HeaderText="Categoría" />
                         <asp:BoundField DataField="Precio" HeaderText="Precio" />
-                        <asp:BoundField DataField="StockMinimo" HeaderText="Stock Mínimo" />
                         <asp:BoundField DataField="StockActual" HeaderText="Stock Actual" />
-
-      
+                        <asp:BoundField DataField="StockMinimo" HeaderText="Stock Mínimo" />
+                        
                     </Columns>
                 </asp:GridView>
             </div>

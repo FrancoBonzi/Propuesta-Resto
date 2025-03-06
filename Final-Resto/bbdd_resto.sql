@@ -41,9 +41,10 @@ CREATE TABLE Productos (
     Nombre NVARCHAR(100) NOT NULL,
 	Descripcion NVARCHAR(100) NOT NULL,
 	Categoria NVARCHAR(100) NOT NULL,
-    Precio DECIMAL(10,2) NOT NULL
+    Precio DECIMAL(10,2) NOT NULL,
+	StockActual INT NOT NULL ,
+	StockMinimo INT NOT NULL
 );
-
 
 
 CREATE TABLE Pedidos (
@@ -73,20 +74,18 @@ CREATE TABLE DetallePedidos (
 
 
 
+INSERT INTO Productos (Nombre, Descripcion, Categoria, Precio, StockActual, StockMinimo) VALUES 
 
-INSERT INTO Productos (Nombre, Descripcion, Categoria, Precio) VALUES 
-
-('Bruschetta', 'Pan tostado con tomate, ajo y albahaca', 'Entrada', 900.00),
-('Provoleta', 'Queso provolone fundido con especias', 'Entrada', 1200.00),
-('Empanadas Caprese', 'Masa rellena de tomate, mozzarella y albahaca', 'Entrada', 1100.00),
-('Lasagna Bolognesa', 'Láminas de pasta con carne, bechamel y queso', 'Plato Principal', 2500.00),
-('Risotto de Hongos', 'Arroz cremoso con champiñones y parmesano', 'Plato Principal', 2300.00),
-('Milanesa Napolitana', 'Milanesa con jamón, tomate y mozzarella', 'Plato Principal', 2200.00),
-('Tiramisú', 'Postre italiano con mascarpone y café', 'Postre', 1400.00),
-('Panna Cotta', 'Postre de crema con salsa de frutos rojos', 'Postre', 1300.00),
-('Profiteroles', 'Bocaditos rellenos de crema con chocolate', 'Postre', 1500.00),
-('Coca-Cola 500ml', 'Gaseosa cola original', 'Bebidas', 500.00),
-('Agua Mineral 500ml', 'Agua natural sin gas', 'Bebidas', 400.00),
-('Vino Malbec', 'Copa de vino tinto Malbec', 'Bebidas', 1800.00),
-('Aperol Spritz', 'Bebida con Aperol, Prosecco y soda', 'Bebidas', 1900.00);
-
+('Bruschetta', 'Pan tostado con tomate, ajo y albahaca', 'Entrada', 900.00, 1, 1),
+('Provoleta', 'Queso provolone fundido con especias', 'Entrada', 1200.00,1, 1)),
+('Empanadas Caprese', 'Masa rellena de tomate, mozzarella y albahaca', 'Entrada', 1100.00,1, 1),
+('Lasagna Bolognesa', 'Láminas de pasta con carne, bechamel y queso', 'Plato Principal', 2500.00,1, 1),
+('Risotto de Hongos', 'Arroz cremoso con champiñones y parmesano', 'Plato Principal', 2300.00,1, 1),
+('Milanesa Napolitana', 'Milanesa con jamón, tomate y mozzarella', 'Plato Principal', 2200.00,1, 1),
+('Tiramisú', 'Postre italiano con mascarpone y café', 'Postre', 1400.00,1, 1),
+('Panna Cotta', 'Postre de crema con salsa de frutos rojos', 'Postre', 1300.00,1, 1),
+('Profiteroles', 'Bocaditos rellenos de crema con chocolate', 'Postre', 1500.00,1, 1),
+('Coca-Cola 500ml', 'Gaseosa cola original', 'Bebidas', 500.00,1, 1),
+('Agua Mineral 500ml', 'Agua natural sin gas', 'Bebidas', 400.00,1, 1),
+('Vino Malbec', 'Copa de vino tinto Malbec', 'Bebidas', 1800.00,1, 1),
+('Aperol Spritz', 'Bebida con Aperol, Prosecco y soda', 'Bebidas', 1900.00,1, 1);
