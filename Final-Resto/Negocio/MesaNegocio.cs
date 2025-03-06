@@ -16,7 +16,15 @@ namespace Negocio
 
             try
             {
-                datos.setearConsulta("SELECT IdMesa, IdMozo, Numero, Capacidad, Disponible FROM Mesas");
+                datos.setearConsulta(@"
+                SELECT 
+                m.IdMesa,
+                u.Nombre,
+                m.Capacidad,
+                m.Disponible,
+                FROM Mesas m
+                INNER JOIN Usuarios u ON m.IdMozo = u.IdUsuario
+                ");
                 datos.EjecutarLectura();
 
                 while (datos.Lector.Read())
@@ -29,6 +37,8 @@ namespace Negocio
                     aux.CapacidadMesa = datos.Lector["Capacidad"] != DBNull.Value ? Convert.ToInt32(datos.Lector["Capacidad"]) : 0;
                     aux.Disponible = datos.Lector["Disponible"] != DBNull.Value ? Convert.ToInt32(datos.Lector["Disponible"]) : 0;
 
+                   
+                    
                     lista.Add(aux);
                 }
 

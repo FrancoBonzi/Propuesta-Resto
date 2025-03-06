@@ -3,7 +3,7 @@
 <asp:Content ID="BodyContent" ContentPlaceHolderID="MainContent" runat="server">
     <div class="container d-flex justify-content-center align-items-center vh-100">
         <div class="card shadow-lg p-4 rounded" style="width: 400px;">
-            <h2 class="text-center">Registro de Usuario</h2>
+            <h2 class="text-center mt-4">Registro de Usuario</h2>
 
             <div class="mb-3">
                 <label for="txtNombre" class="form-label">Nombre Completo</label>
