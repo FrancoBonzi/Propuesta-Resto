@@ -36,6 +36,13 @@
                             OnClick="btnGestionarMesas_Click" />
                     </td>
                 </tr>  
+
+                 <tr>
+                    <td>
+                        <asp:Button ID="btnMenu" runat="server" Text="Revisar productos" CssClass="btn btn-primary"
+                            OnClick="btnGestionarMenu_Click" />
+                    </td>
+                </tr>  
             </tbody>
         </table>
     </div>

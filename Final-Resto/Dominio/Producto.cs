@@ -10,14 +10,16 @@ using static System.Net.Mime.MediaTypeNames;
 
 namespace Dominio
 {
-    public class Articulo
+    public class Producto
     {
-        public int IdArticulo { get; set; }
+        public int IdProducto { get; set; }
 
         public string Nombre { get; set; }
 
         [DisplayName("Descripción")]
         public string Descripcion { get; set; }
+
+        public string Categoria { get; set; }
 
         public decimal Precio { get; set; }
 

@@ -9,26 +9,27 @@ using Dominio;
 
 namespace Negocio
 {
-    public class ArticuloNegocio
+    public class ProductoNegocio
     {
-        public List<Articulo> listar()
+        public List<Producto> ListarProductos()
         {
-            List<Articulo> lista = new List<Articulo>();
+            List<Producto> lista = new List<Producto>();
             AccesoDatos datos = new AccesoDatos();
 
             try
             {
-                datos.setearConsulta("SELECT IdArticulo,Nombre,Descripcion,Precio,StockActual,StockMinimo FROM Articulos");
+                datos.setearConsulta("SELECT IdProducto,Nombre,Descripcion, Categoria, Precio,StockActual,StockMinimo FROM Productos");
 
                 datos.EjecutarLectura();
 
                 while (datos.Lector.Read())
                 {
-                    Articulo aux = new Articulo();
+                    Producto aux = new Producto();
 
-                    aux.IdArticulo = (int)datos.Lector["IdArticulo"];
+                    aux.IdProducto = (int)datos.Lector["IdProducto"];
                     aux.Nombre = (string)datos.Lector["Nombre"];
                     aux.Descripcion = (string)datos.Lector["Descripcion"];
+                    aux.Categoria = (string)datos.Lector["Categoria"];
                     aux.Precio = (decimal)datos.Lector["Precio"];
                     aux.StockActual = (int)datos.Lector["Stock Actual"];
                     aux.StockMinimo = (int)datos.Lector["Stock Minimo"];
@@ -39,7 +40,7 @@ namespace Negocio
             }
             catch(Exception ex)
             {
-                throw new Exception("Error al querer listar los articulos..."+ex.Message);
+                throw new Exception("Error al querer listar los Productos..."+ex.Message);
             }
             finally
             {
@@ -47,13 +48,13 @@ namespace Negocio
             }
         }
 
-        public void AgregarArticulo(Articulo nuevo)
+        public void AgregarProducto(Producto nuevo)
         {
             AccesoDatos datos = new AccesoDatos();
 
             try
             {
-                datos.setearProcedimiento("AltaArticulos");
+                datos.setearProcedimiento("AltaProductos");
                 datos.setearParametro("@Nombre", nuevo.Nombre);
                 datos.setearParametro("@Descripcion", nuevo.Descripcion);
                 datos.setearParametro("@Precio", nuevo.Precio);
@@ -64,7 +65,7 @@ namespace Negocio
             }
             catch(Exception ex)
             {
-                throw new Exception("Error al agregar el nuevo articulo:"+ ex.Message);
+                throw new Exception("Error al agregar el nuevo Producto:"+ ex.Message);
             }
             finally
             {
@@ -72,15 +73,15 @@ namespace Negocio
             }
         }
 
-        public void ModificarArticulo(Articulo nuevo)
+        public void ModificarProducto(Producto nuevo)
         {
             AccesoDatos datos = new AccesoDatos();
 
             try
             {
-                datos.setearProcedimiento("ModificarArticulos");
+                datos.setearProcedimiento("ModificarProductos");
 
-                datos.setearParametro("@IdArticulo", nuevo.IdArticulo);
+                datos.setearParametro("@IdProducto", nuevo.IdProducto);
                 datos.setearParametro("@Nombre", nuevo.Nombre);
                 datos.setearParametro("@Descripcion", nuevo.Descripcion);
                 datos.setearParametro("@Precio", nuevo.Precio);
@@ -99,13 +100,13 @@ namespace Negocio
             }
         }
 
-        public void EliminarArticulo(int id)
+        public void EliminarProducto(int id)
         {
             AccesoDatos datos = new AccesoDatos();
 
             try
             {
-                datos.setearProcedimiento("EliminarArticulos");
+                datos.setearProcedimiento("EliminarProductos");
                 datos.setearParametro("Id", id);
 
                 datos.ejecutarAccion();

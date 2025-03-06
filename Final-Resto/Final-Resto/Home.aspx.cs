@@ -7,7 +7,8 @@ namespace Final_Resto
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            // Redirigir al login si no hay sesión activa
+
+
             if (Session["Usuario"] == null)
             {
                 Response.Redirect("Default.aspx");
@@ -32,6 +33,10 @@ namespace Final_Resto
         protected void btnGestionarMesas_Click(object sender, EventArgs e)
         {
             Response.Redirect("Mesas.aspx");
+        }
+        protected void btnGestionarMenu_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("Menu.aspx");
         }
 
     }
