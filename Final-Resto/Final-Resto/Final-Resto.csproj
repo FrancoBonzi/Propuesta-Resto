@@ -110,7 +110,8 @@
     <Content Include="Reportes.aspx" />
     <Content Include="Home.aspx" />
     <Content Include="MesasAsignadas.aspx" />
-    <Content Include="Productos.aspx" />
+    <Content Include="Pedidos.aspx" />
+    <Content Include="DetallePedido.aspx" />
     <None Include="Scripts\jquery-3.7.0.intellisense.js" />
     <Content Include="Scripts\jquery-3.7.0.js" />
     <Content Include="Scripts\jquery-3.7.0.min.js" />
@@ -188,12 +189,19 @@
     <Compile Include="MesasAsignadas.aspx.designer.cs">
       <DependentUpon>MesasAsignadas.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Productos.aspx.cs">
-      <DependentUpon>Productos.aspx</DependentUpon>
+    <Compile Include="Pedidos.aspx.cs">
+      <DependentUpon>Pedidos.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Productos.aspx.designer.cs">
-      <DependentUpon>Productos.aspx</DependentUpon>
+    <Compile Include="Pedidos.aspx.designer.cs">
+      <DependentUpon>Pedidos.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="DetallePedido.aspx.cs">
+      <DependentUpon>DetallePedido.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="DetallePedido.aspx.designer.cs">
+      <DependentUpon>DetallePedido.aspx</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>

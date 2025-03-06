@@ -49,6 +49,10 @@ namespace Final_Resto
             {
                 negocio.AbrirMesa(idMesa);
                 lblMensaje.Text = "Mesa abierta correctamente.";
+
+
+
+
             }
             else if (e.CommandName == "CerrarMesa")
             {

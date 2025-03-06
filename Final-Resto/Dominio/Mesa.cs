@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Final_Resto;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -15,6 +16,7 @@ namespace Dominio
        
        public int IdMozo { get; set; } 
        
+        public Usuario usuarioNombre { get; set; }
 
         public int Disponible { get; set; }
 

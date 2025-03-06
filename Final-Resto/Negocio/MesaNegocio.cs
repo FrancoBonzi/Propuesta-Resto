@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Dominio;
+using Final_Resto;
 
 namespace Negocio
 {
@@ -17,28 +18,36 @@ namespace Negocio
             try
             {
                 datos.setearConsulta(@"
-                SELECT 
+            SELECT 
                 m.IdMesa,
-                u.Nombre,
+                m.Numero, 
                 m.Capacidad,
                 m.Disponible,
-                FROM Mesas m
-                INNER JOIN Usuarios u ON m.IdMozo = u.IdUsuario
-                ");
+                u.Id AS IdMozo,
+                u.Nombre AS NombreMozo
+            FROM Mesas m
+            LEFT JOIN Usuarios u ON m.IdMozo = u.Id
+            ");
                 datos.EjecutarLectura();
 
                 while (datos.Lector.Read())
                 {
-                    Mesa aux = new Mesa();
+                    Mesa aux = new Mesa
+                    {
+                        IdMesa = datos.Lector["IdMesa"] != DBNull.Value ? Convert.ToInt32(datos.Lector["IdMesa"]) : 0,
+                        NumeroMesa = datos.Lector["Numero"] != DBNull.Value ? Convert.ToInt32(datos.Lector["Numero"]) : 0,
+                        CapacidadMesa = datos.Lector["Capacidad"] != DBNull.Value ? Convert.ToInt32(datos.Lector["Capacidad"]) : 0,
+                        Disponible = datos.Lector["Disponible"] != DBNull.Value ? Convert.ToInt32(datos.Lector["Disponible"]) : 0,
+                        IdMozo = datos.Lector["IdMozo"] != DBNull.Value ? Convert.ToInt32(datos.Lector["IdMozo"]) : 0
+                    };
 
-                    aux.IdMesa = datos.Lector["IdMesa"] != DBNull.Value ? Convert.ToInt32(datos.Lector["IdMesa"]) : 0;
-                    aux.IdMozo = datos.Lector["IdMozo"] != DBNull.Value ? Convert.ToInt32(datos.Lector["IdMozo"]) : 0;
-                    aux.NumeroMesa = datos.Lector["Numero"] != DBNull.Value ? Convert.ToInt32(datos.Lector["Numero"]) : 0;
-                    aux.CapacidadMesa = datos.Lector["Capacidad"] != DBNull.Value ? Convert.ToInt32(datos.Lector["Capacidad"]) : 0;
-                    aux.Disponible = datos.Lector["Disponible"] != DBNull.Value ? Convert.ToInt32(datos.Lector["Disponible"]) : 0;
 
-                   
-                    
+                    aux.usuarioNombre = new Usuario
+                    {
+                        Id = aux.IdMozo,
+                        Nombre = datos.Lector["NombreMozo"] != DBNull.Value ? datos.Lector["NombreMozo"].ToString() : "Sin asignar"
+                    };
+
                     lista.Add(aux);
                 }
 
@@ -55,6 +64,8 @@ namespace Negocio
         }
 
 
+
+
         public void AsignarMozo(Mesa mesa)
         {
             AccesoDatos datos = new AccesoDatos();
@@ -69,7 +80,7 @@ namespace Negocio
 
                 datos.ejecutarAccion();
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 throw ex;
             }
@@ -104,9 +115,9 @@ namespace Negocio
 
                 return lista;
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
-                throw new Exception("Error al querer listar las mesas "+ex.Message);
+                throw new Exception("Error al querer listar las mesas " + ex.Message);
             }
             finally
             {
@@ -129,7 +140,7 @@ namespace Negocio
             }
             catch (Exception ex)
             {
-                throw new Exception("Error al agregar la mesa "+ex.Message);
+                throw new Exception("Error al agregar la mesa " + ex.Message);
             }
             finally
             {
@@ -153,7 +164,7 @@ namespace Negocio
 
                 datos.ejecutarAccion();
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 throw ex;
             }
@@ -174,7 +185,7 @@ namespace Negocio
 
                 datos.ejecutarAccion();
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 throw ex;
             }
@@ -291,7 +302,7 @@ namespace Negocio
             }
         }
 
-
-
     }
 }
+
+    
