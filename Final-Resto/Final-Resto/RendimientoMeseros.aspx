@@ -39,14 +39,14 @@
             <div class="col">
                 <div class="card shadow p-4">
                     <h3 class="text-center mb-4">Registro de Pedidos</h3>
-                    <asp:GridView ID="gvPedidos" runat="server" AutoGenerateColumns="False" CssClass="table table-striped table-bordered">
+                    <asp:GridView ID="gvRendimiento" runat="server" AutoGenerateColumns="False" CssClass="table table-striped table-bordered">
                         <Columns>
-                            <asp:BoundField DataField="IdPedido" HeaderText="ID Pedido" />
-                            <asp:BoundField DataField="FechaHora" HeaderText="Fecha de Apertura" />
-                            <asp:BoundField DataField="FechaHoraCierre" HeaderText="Fecha de Cierre" />
+
+                            <asp:BoundField DataField="FechaCierre" HeaderText="Fecha" />
                             <asp:BoundField DataField="Nombre" HeaderText="Nombre" />
-                            <asp:BoundField DataField="NumeroMesa" HeaderText="Número de Mesa" />
-                            <asp:BoundField DataField="Total" HeaderText="Total Pedido" />
+                            <asp:BoundField DataField="CantidadPedidos" HeaderText="Cantidad de Pedidos" />
+                            <asp:BoundField DataField="TotalRecaudado" HeaderText="Total Recaudado" />
+
                         </Columns>
                     </asp:GridView>
                 </div>

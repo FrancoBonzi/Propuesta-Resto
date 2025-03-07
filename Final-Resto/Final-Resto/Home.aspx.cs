@@ -33,15 +33,19 @@ namespace Final_Resto
             Response.Redirect("RegistroUsuarios.aspx");
         }
 
+        protected void btnGestionarMesas_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("Mesas.aspx");
+        }
+
         protected void btnReportes_Click(object sender, EventArgs e)
         {
             Response.Redirect("Reportes.aspx");
         }
 
-
-        protected void btnGestionarMesas_Click(object sender, EventArgs e)
+        protected void btnRendimiento_Click(object sender, EventArgs e)
         {
-            Response.Redirect("Mesas.aspx");
+            Response.Redirect("RendimientoMeseros.aspx");
         }
         protected void btnGestionarMenu_Click(object sender, EventArgs e)
         {

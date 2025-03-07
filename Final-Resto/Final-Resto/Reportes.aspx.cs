@@ -30,7 +30,7 @@ namespace Final_Resto
                     FROM Pedidos p
                     LEFT JOIN Usuarios u ON p.IdMozo = u.Id
                     LEFT JOIN Mesas m ON p.IdMesa = m.IdMesa
-                    WHERE 1=1";
+                    WHERE 1=1 and FechaHoraCierre is not null";
 
 
                 if (!string.IsNullOrWhiteSpace(fechaPedido))

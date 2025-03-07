@@ -19,11 +19,16 @@
                 </tr>
                 <tr>
                     <td>
-                        <asp:Button ID="btnReportes" runat="server" Text="Reportes" CssClass="btn btn-primary"
+                        <asp:Button ID="btnReportes" runat="server" Text="Reporte de Pedidos" CssClass="btn btn-primary"
                             OnClick="btnReportes_Click" />
                     </td>
                 </tr>
-
+                <tr>
+                    <td>
+                        <asp:Button ID="btnRendimiento" runat="server" Text="Rendimiento de Meseros" CssClass="btn btn-primary"
+                            OnClick="btnRendimiento_Click" />
+                    </td>
+                </tr>
 
                  <tr>
                     <td>
