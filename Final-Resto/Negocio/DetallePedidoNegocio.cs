@@ -19,7 +19,7 @@ namespace Negocio
 
             try
             {
-                datos.setearConsulta(@"SELECT d.IdDetalle, d.IdPedido, p.IdProducto, p.Nombre, d.Cantidad, d.PrecioUnitario, d.Subtotal 
+                datos.setearConsulta(@"SELECT d.IdDetalle, d.IdPedido, d.IdProducto, p.Nombre as NombreProducto, d.Cantidad, d.PrecioUnitario, d.Subtotal 
                                FROM DetallePedidos d
                                INNER JOIN Productos p ON d.IdProducto = p.IdProducto
                                WHERE d.IdPedido = @IdPedido");
@@ -31,18 +31,18 @@ namespace Negocio
                     DetallePedido aux = new DetallePedido
                     {
                         IdDetalle = (int)datos.Lector["IdDetalle"],
-                        IdPedido =  (int)datos.Lector["IdPedido"] ,
+                        IdPedido = (int)datos.Lector["IdPedido"],
                         IdProducto = (int)datos.Lector["IdProducto"],
                         Cantidad = (int)datos.Lector["Cantidad"],
                         PrecioUnitario = (Decimal)datos.Lector["PrecioUnitario"],
                         Subtotal = (Decimal)datos.Lector["Subtotal"],
-          
-                    };
 
-                    aux.nombre = new Producto
-                    {
-                        IdProducto = aux.IdProducto,
-                        Nombre = datos.Lector["Nombre"].ToString()
+
+                        producto = new Producto
+                        {
+                            Nombre = datos.Lector["NombreProducto"].ToString()
+
+                        }
                     };
 
                     lista.Add(aux);

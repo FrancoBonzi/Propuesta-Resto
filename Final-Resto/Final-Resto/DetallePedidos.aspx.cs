@@ -51,7 +51,7 @@ namespace Final_Resto
                     IdProducto = idProducto,
                     Cantidad = cantidad,
                     PrecioUnitario = producto.Precio,
-                    Subtotal = cantidad * producto.Precio
+                 //   Subtotal = cantidad * producto.Precio
                 };
 
                 DetallePedidoNegocio pedidoNegocio = new DetallePedidoNegocio();

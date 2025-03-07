@@ -20,10 +20,10 @@
                 <asp:GridView ID="gvDetallePedido" runat="server" AutoGenerateColumns="False" CssClass="table table-striped table-bordered">
                     <Columns>
                         <asp:BoundField DataField="IdDetalle" HeaderText="ID Detalle" />
-                        <asp:BoundField DataField="Producto.Nombre" HeaderText="Producto" />
+                        <asp:BoundField DataField="Producto.Nombre" HeaderText="Pedido" />
                         <asp:BoundField DataField="Cantidad" HeaderText="Cantidad" />
                         <asp:BoundField DataField="PrecioUnitario" HeaderText="Precio Unitario" />
-                        <asp:BoundField DataField="Total" HeaderText="Total" />
+                        <asp:BoundField DataField="Subtotal" HeaderText="Subtotal" />
                     </Columns>
                 </asp:GridView>
             </div>
