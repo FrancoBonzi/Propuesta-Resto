@@ -4,6 +4,7 @@ using Negocio;
 using Dominio;
 using System.Collections.Generic;
 using System.Web.UI.WebControls;
+using System.Globalization;
 
 namespace Final_Resto
 {
@@ -17,6 +18,7 @@ namespace Final_Resto
             {
                 CargarMozos();
                 CargarMesas();
+                formMesa.Visible = false;
             }
         }
 
@@ -26,6 +28,37 @@ namespace Final_Resto
             gvMesa.DataBind();
         }
 
+        protected void btnAgregarMesa_Click(object sender, EventArgs e)
+        {
+            formMesa.Visible = true;
+
+        }
+        
+
+
+        protected void btnGuardar_Click(object sender, EventArgs e)
+        {
+            Mesa nuevo = new Mesa
+            {
+
+                CapacidadMesa = int.Parse(txtCapacidad.Text),
+                NumeroMesa = int.Parse(txtNumeroMesa.Text)
+            };
+
+            negocio.AgregarMesa(nuevo);
+            lblMensaje.Text = "Mesa agregado correctamente.";
+            CargarMesas();
+
+        }
+
+
+        protected void btnCancelar_Click(object sender, EventArgs e)
+        {
+            formMesa.Visible = false;
+
+        }
+        
+       
 
 
         protected void btnEliminarMesa_Click(object sender, EventArgs e)

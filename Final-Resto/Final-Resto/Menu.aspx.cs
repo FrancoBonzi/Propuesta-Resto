@@ -45,6 +45,7 @@ namespace Final_Resto
             lblMensaje.Text = "Producto agregado correctamente.";
             LimpiarFormulario();
             CargarProductos();
+            formProducto.Visible = true;
         }
 
         protected void btnModificar_Click(object sender, EventArgs e)

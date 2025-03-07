@@ -65,6 +65,31 @@ namespace Negocio
             }
         }
 
+        public void AgregarMesa(Mesa nuevo)
+        {
+            AccesoDatos datos = new AccesoDatos();
+
+            try
+            {
+                datos.setearConsulta(@"INSERT INTO Mesas ( Numero, Disponible, Capacidad, Estado) VALUES ( @Numero, @Disponible, @Capacidad, @Estado)");
+
+                datos.setearParametro("@Numero", nuevo.NumeroMesa);
+                datos.setearParametro("@Disponible", 1);
+                datos.setearParametro("@Capacidad", nuevo.CapacidadMesa);
+                datos.setearParametro("@Estado","Cerrado");
+
+
+                datos.ejecutarAccion();
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error al agregar el producto: " + ex.Message);
+            }
+            finally
+            {
+                datos.cerrarConexion();
+            }
+        }
 
 
 
