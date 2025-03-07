@@ -11,7 +11,7 @@ namespace Final_Resto
 {
 
 
-    public partial class Productos
+    public partial class Pedidos
     {
 
         /// <summary>

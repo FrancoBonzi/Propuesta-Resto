@@ -32,7 +32,7 @@
                         <asp:BoundField DataField="IdMesa" HeaderText="ID Mesa" />
                         <asp:BoundField DataField="IdMozo" HeaderText="ID Mozo" />
                         <asp:BoundField DataField="usuarioNombre.Nombre" HeaderText="Mesero Asignado" />
-                        <asp:BoundField DataField="NumeroMesa" HeaderText="Numero" />
+                        <asp:BoundField DataField="NumeroMesa" HeaderText="Mesa Numero" />
                         <asp:BoundField DataField="CapacidadMesa" HeaderText="Capacidad" />
                         <asp:BoundField DataField="Disponible" HeaderText="Disponible" />
                     </Columns>

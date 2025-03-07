@@ -11,7 +11,7 @@ namespace Final_Resto
 {
 
 
-    public partial class MesasAsignadas
+    public partial class DetallePedidos
     {
 
         /// <summary>
@@ -24,48 +24,48 @@ namespace Final_Resto
         protected global::System.Web.UI.WebControls.Label lblMensaje;
 
         /// <summary>
-        /// Control gvMesa.
+        /// Control hfIdPedido.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView gvMesa;
+        protected global::System.Web.UI.WebControls.HiddenField hfIdPedido;
 
         /// <summary>
-        /// Control txtMesa.
+        /// Control ddlProductos.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtMesa;
+        protected global::System.Web.UI.WebControls.DropDownList ddlProductos;
 
         /// <summary>
-        /// Control btnAbrirPedido.
+        /// Control txtCantidad.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnAbrirPedido;
+        protected global::System.Web.UI.WebControls.TextBox txtCantidad;
 
         /// <summary>
-        /// Control btnCerrarPedido.
+        /// Control btnAgregarProducto.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnCerrarPedido;
+        protected global::System.Web.UI.WebControls.Button btnAgregarProducto;
 
         /// <summary>
-        /// Control btnAgregarPedido.
+        /// Control gvDetallePedido.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnAgregarPedido;
+        protected global::System.Web.UI.WebControls.GridView gvDetallePedido;
     }
 }

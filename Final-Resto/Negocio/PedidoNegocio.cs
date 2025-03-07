@@ -10,77 +10,40 @@ namespace Negocio
 {
     public class PedidoNegocio
     {
-        public List<Pedido> listar()
-        {
-            List<Pedido> lista = new List<Pedido>();
-            AccesoDatos datos = new AccesoDatos();
 
-            try
-            {
-                datos.setearConsulta(@"SELECT  
-                                    p.IdPedido,
-                                    m.IdMesa,
-                                    u.Id,
-                                    p.FechaHora,
-                                    p.FechaHoraCierre,
-                                    p.Total
-                                    FROM Pedidos p
-                                    INNER JOIN Mesas m ON p.IdMesa=m.IdMesa
-                                    INNER JOIN Usuarios u ON p.IdMozo=u.Id
-                                    ");
 
-                datos.EjecutarLectura();
-
-                while (datos.Lector.Read())
-                {
-                    Pedido aux = new Pedido
-                    {
-                        IdPedido = (int)datos.Lector["IdPedido"],
-                        FechaHora = (DateTime)datos.Lector["FechaHora"],
-                        FechaHoraCierre = (DateTime)datos.Lector["FechaHoraCierre"],
-                        Total = (Decimal)datos.Lector["Total"],
-
-                        mesa = new Mesa
-                        {
-                            IdMesa = datos.Lector["IdMesa"] != DBNull.Value ? (int)datos.Lector["IdMesa"] : 0
-                        }
-                    };
-
-                    aux.usuario = new Usuario
-                    {
-                        Id = datos.Lector["Id"] != DBNull.Value ? (int)datos.Lector["Id"] : 0
-                    };
-
-                    lista.Add(aux);
-                   
-                }
-                return lista;
-            }
-            catch(Exception ex)
-            {
-                throw ex;
-            }
-            finally
-            {
-                datos.cerrarConexion();
-            }
-        }
-
-        public void AgregarPedido(Pedido nuevo)
+        public bool AbrirPedido(Pedido nuevo)
         {
             AccesoDatos datos = new AccesoDatos();
 
+
             try
             {
-                datos.setearConsulta(@"INSERT INTO Pedidos (IdMesa,IdMozo,FechaHora,FechaHoraCierre,Total) VALUES (@IdMesa,@Id,@FechaHora,@FechaHoraCierra,@Total");
+                datos.setearConsulta(@"SELECT COUNT(*) FROM Pedidos  WHERE IdMesa = @IdMesa AND Estado = 'Abierto'");
 
                 datos.setearParametro("@IdMesa", nuevo.mesa?.IdMesa ?? (object)DBNull.Value);
-                datos.setearParametro("@id", nuevo.usuario?.Id ?? (object)DBNull.Value);
-                datos.setearParametro("@FechaHora", nuevo.FechaHora);
-                datos.setearParametro("@FechaHoraCierre", nuevo.FechaHoraCierre);
-                datos.setearParametro("@Total", nuevo.Total);
+                datos.EjecutarLectura();
+
+                if (datos.Lector.Read() && Convert.ToInt32(datos.Lector[0]) > 0)
+                {
+                    datos.cerrarConexion();
+                    return false;
+                    
+
+                }
+
+                datos.limpiarParametros();
+                datos.cerrarConexion();
+
+
+                datos.setearConsulta(@"INSERT INTO Pedidos (IdMesa,IdMozo,Estado) OUTPUT INSERTED.IdPedido VALUES (@IdMesa,@IdMozo,@Estado)");
+
+                datos.setearParametro("@IdMesa", nuevo.mesa?.IdMesa ?? (object)DBNull.Value);
+                datos.setearParametro("@IdMozo", nuevo.usuario?.Id ?? (object)DBNull.Value);
+                datos.setearParametro("@Estado", "Abierto");
 
                 datos.ejecutarAccion();
+                return true;
             }
             catch(Exception ex)
             {
@@ -92,30 +55,6 @@ namespace Negocio
             }
         }
 
-
-        public void ModificarPedido(Pedido modificar)
-        {
-            AccesoDatos datos = new AccesoDatos();
-
-            try
-            {
-                datos.setearConsulta("UPDATE Pedidos SET IdMesa=@IdMesa,IdMozo=@Id,FechaHora=@FechaHora,@FechaHoraCierre,Total=@Total WHERE IdPedido=@IdPedido");
-
-                datos.setearParametro("@IdMesa", modificar.mesa?.IdMesa ?? (object)DBNull.Value);
-                datos.setearParametro("@Id", modificar.usuario?.Id ?? (object)DBNull.Value);
-                datos.setearParametro("@FechaHora", modificar.FechaHora);
-                datos.setearParametro("@FechaHoraCierre", modificar.FechaHoraCierre);
-                datos.setearParametro("@Total", modificar.Total);
-
-                datos.ejecutarAccion();
-
-            }
-            catch(Exception ex)
-            {
-                throw ex;
-            }
-        }
-        
         public void EliminarPedido (int id)
         {
             AccesoDatos datos = new AccesoDatos ();
@@ -135,5 +74,59 @@ namespace Negocio
                 datos.cerrarConexion();
             }
         }
+
+
+        public bool CerrarPedido(int IdMesa, int idMozo)
+        {
+            AccesoDatos datos = new AccesoDatos();
+
+            try
+            {
+ 
+                datos.setearConsulta(@"
+            SELECT COUNT(*) FROM Pedidos p INNER JOIN Mesas m ON p.IdMesa = m.IdMesa WHERE p.IdMesa = @IdMesa AND m.IdMozo = @IdMozo");
+
+                datos.setearParametro("@IdMesa", IdMesa);
+                datos.setearParametro("@IdMozo", idMozo);
+
+                datos.EjecutarLectura();
+
+
+                if (datos.Lector.Read() && Convert.ToInt32(datos.Lector[0]) == 0)
+                {
+                    datos.cerrarConexion();
+                    return false;
+                }
+                else
+                {
+                    datos.limpiarParametros();
+                    datos.cerrarConexion();
+
+                    datos.setearConsulta(@"UPDATE Pedidos SET Estado = @Estado, FechaHoraCierre = GETDATE() , Total = @Total WHERE IdMesa = @IdMesa");
+
+                    datos.setearParametro("@IdMesa", IdMesa);
+                    datos.setearParametro("@Estado", "Cerrado");
+                    datos.setearParametro("@Total", 100);
+
+                    datos.ejecutarAccion();
+                    return true;
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+            finally
+            {
+                datos.cerrarConexion();
+            }
+        }
+
+
+
+
+
+
+
     }
 }

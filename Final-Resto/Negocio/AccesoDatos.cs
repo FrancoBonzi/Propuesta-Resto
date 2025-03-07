@@ -93,5 +93,12 @@ namespace Negocio
             lector = comando.ExecuteReader();
             return lector;
         }
+        public void limpiarParametros()
+        {
+            if (comando != null)
+            {
+                comando.Parameters.Clear();
+            }
+        }
     }
 }

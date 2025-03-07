@@ -22,9 +22,10 @@ namespace Final_Resto
 
             if (usuario != null && usuario.Contrasena == password) 
             {
-                // Guardar en sesión
+
                 Session["Usuario"] = usuario.UsuarioNombre;
                 Session["Rol"] = usuario.Rol;
+                Session["Id"] = usuario.Id;
 
                 if (usuario.Rol == "Gerente")
                     Response.Redirect("Home.aspx");

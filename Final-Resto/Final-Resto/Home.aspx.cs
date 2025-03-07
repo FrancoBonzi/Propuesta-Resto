@@ -9,10 +9,21 @@ namespace Final_Resto
         {
 
 
+
+
+
             if (Session["Usuario"] == null)
             {
                 Response.Redirect("Default.aspx");
             }
+
+
+            if (Session["Rol"] != null && Session["Rol"].ToString() == "Gerente")
+            {
+                Response.Redirect("Home.aspx");
+            } else { Response.Redirect("MesasAsignadas.aspx"); }
+
+
         }
 
         protected void btnRegistroUsuarios_Click(object sender, EventArgs e)

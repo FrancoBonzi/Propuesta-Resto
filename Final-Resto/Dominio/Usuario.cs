@@ -6,8 +6,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using static System.Net.Mime.MediaTypeNames;
+using Dominio;
+
 
 namespace Final_Resto
+
+
 {
     public class Usuario
     {

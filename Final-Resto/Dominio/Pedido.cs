@@ -20,6 +20,8 @@ namespace Dominio
 
         public DateTime FechaHoraCierre { get; set; }
 
+        public string Estado { get; set; }
+
         public Decimal Total { get; set; }
     }
 }

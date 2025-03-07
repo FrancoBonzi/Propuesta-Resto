@@ -11,11 +11,14 @@ namespace Final_Resto
     {
         MesaNegocio negocio = new MesaNegocio();
 
+        PedidoNegocio pedido = new PedidoNegocio();
+
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
             {
                 CargarMesas();
+
             }
         }
 
@@ -42,29 +45,82 @@ namespace Final_Resto
             gvMesa.DataBind();
         }
 
-        protected void gvMesa_RowCommand(object sender, GridViewCommandEventArgs e)
+        protected void btnAbrirPedido_Click(object sender, EventArgs e)
         {
-            int idMesa = Convert.ToInt32(e.CommandArgument);
-            if (e.CommandName == "AbrirMesa")
+            try
             {
-                negocio.AbrirMesa(idMesa);
-                lblMensaje.Text = "Mesa abierta correctamente.";
+
+                int idMesa = int.Parse(txtMesa.Text); 
+                int idMozo = (int)Session["Id"]; 
+
+   
+                Pedido nuevoPedido = new Pedido
+                {
+                    mesa = new Mesa { IdMesa = idMesa },
+                    usuario = new Usuario { Id = idMozo },
+                    Estado = "Abierto"
+                };
+
+  
+                PedidoNegocio pedidoNegocio = new PedidoNegocio();
+                
+                if (!pedidoNegocio.AbrirPedido(nuevoPedido))
+                {
+                    lblMensaje.Text = "Esta mesa se encuentra abierta";}
 
 
+                else
+                {
+                    DetallePedidoNegocio obtenerid = new DetallePedidoNegocio();
+                    int idPedido = obtenerid.ObtenerPedidoAbierto(idMesa);
 
+                    Session["idPedido"] = idPedido;
+
+
+                    Response.Redirect("DetallePedidos.aspx"); }
 
             }
-            else if (e.CommandName == "CerrarMesa")
+            catch (Exception)
             {
-                negocio.CerrarMesa(idMesa);
-                lblMensaje.Text = "Mesa cerrada correctamente.";
+                lblMensaje.Text = "Error al abrir el pedido";
             }
-            else if (e.CommandName == "AgregarPedido")
-            {
-                Response.Redirect("AgregarPedido.aspx?IdMesa=" + idMesa);
-            }
-
-            CargarMesas(); // Refrescar la lista de mesas
         }
+
+
+
+        protected void btnCerrarPedido_Click(object sender, EventArgs e)
+        {
+            try
+            {
+
+                int idMesa = int.Parse(txtMesa.Text);
+                int idMozo = (int)Session["Id"];
+
+
+                PedidoNegocio pedidoNegocio = new PedidoNegocio();
+
+
+                pedidoNegocio.CerrarPedido(idMesa, idMozo);
+
+                lblMensaje.Text = "Mesa cerrada con Exito";
+
+
+            }
+            catch (Exception ex)
+            {
+                lblMensaje.Text = "Error al cerrar el pedido" + ex.Message;
+            }
+
+        }
+
+
+        protected void btnAgregarPedido_Click(object sender, EventArgs e)
+        {
+
+        }
+
+
+
+
     }
 }

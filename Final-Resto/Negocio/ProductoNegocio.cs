@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Dominio;
+using Final_Resto;
 
 namespace Negocio
 {
@@ -194,5 +195,48 @@ namespace Negocio
                 datos.cerrarConexion();
             }
         }
+
+
+        public List<Producto> ListarProductosConStock()
+        {
+            List<Producto> lista = new List<Producto>();
+            AccesoDatos datos = new AccesoDatos();
+
+            try
+            {
+                datos.setearConsulta("SELECT IdProducto, Nombre, Descripcion, Categoria, Precio, StockActual, StockMinimo FROM Productos WHERE StockActual > 0");
+                datos.EjecutarLectura();
+
+                while (datos.Lector.Read())
+                {
+                    Producto aux = new Producto
+                    {
+                        IdProducto = Convert.ToInt32(datos.Lector["IdProducto"]),
+                        Nombre = datos.Lector["Nombre"].ToString(),
+                        Descripcion = datos.Lector["Descripcion"].ToString(),
+                        Categoria = datos.Lector["Categoria"].ToString(),
+                        Precio = Convert.ToDecimal(datos.Lector["Precio"]),
+                        StockActual = Convert.ToInt32(datos.Lector["StockActual"]),
+                        StockMinimo = Convert.ToInt32(datos.Lector["StockMinimo"])
+                    };
+
+                    lista.Add(aux);
+                }
+                return lista;
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error al listar los productos: " + ex.Message);
+            }
+            finally
+            {
+                datos.cerrarConexion();
+            }
+        }
+
+
+
+
+
     }
 }

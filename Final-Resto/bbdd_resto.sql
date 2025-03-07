@@ -32,7 +32,8 @@ IdMesa INT NOT NULL PRIMARY KEY IDENTITY (1,1),
 Numero INT NOT NULL UNIQUE,
 IdMozo INT FOREIGN KEY REFERENCES Usuarios (Id),
 Disponible INT NOT NULL DEFAULT 1,
-Capacidad INT NOT NULL
+Capacidad INT NOT NULL,
+Estado NVARCHAR(20)
 );
 
 
@@ -52,7 +53,9 @@ CREATE TABLE Pedidos (
     IdMesa INT NOT NULL,
     IdMozo INT NOT NULL,
     FechaHora DATETIME DEFAULT GETDATE(),
+    FechaHoraCierre DATETIME NULL,
     Estado NVARCHAR(50) DEFAULT 'Abierto', -- Estados: Abierto, Cerrado
+    Total DECIMAL NULL, 
     FOREIGN KEY (IdMesa) REFERENCES Mesas(IdMesa),
     FOREIGN KEY (IdMozo) REFERENCES Usuarios(Id)
 );

@@ -70,7 +70,7 @@ namespace Final_Resto
             }
             else
             {
-                lblMensaje.Text = "Seleccione un mozo y una mesa válida.";
+                lblMensaje.Text = "Seleccione un mozo y una mesa válida";
             }
         }
 

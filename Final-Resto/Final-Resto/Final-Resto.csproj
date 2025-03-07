@@ -103,7 +103,6 @@
     <Content Include="Scripts\bootstrap.esm.min.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
-    <Content Include="Error.aspx" />
     <Content Include="Menu.aspx" />
     <Content Include="RegistroUsuarios.aspx" />
     <Content Include="Mesas.aspx" />
@@ -111,7 +110,7 @@
     <Content Include="Home.aspx" />
     <Content Include="MesasAsignadas.aspx" />
     <Content Include="Pedidos.aspx" />
-    <Content Include="DetallePedido.aspx" />
+    <Content Include="DetallePedidos.aspx" />
     <None Include="Scripts\jquery-3.7.0.intellisense.js" />
     <Content Include="Scripts\jquery-3.7.0.js" />
     <Content Include="Scripts\jquery-3.7.0.min.js" />
@@ -139,13 +138,6 @@
     </Compile>
     <Compile Include="Site.Master.designer.cs">
       <DependentUpon>Site.Master</DependentUpon>
-    </Compile>
-    <Compile Include="Error.aspx.cs">
-      <DependentUpon>Error.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Error.aspx.designer.cs">
-      <DependentUpon>Error.aspx</DependentUpon>
     </Compile>
     <Compile Include="Menu.aspx.cs">
       <DependentUpon>Menu.aspx</DependentUpon>
@@ -196,12 +188,12 @@
     <Compile Include="Pedidos.aspx.designer.cs">
       <DependentUpon>Pedidos.aspx</DependentUpon>
     </Compile>
-    <Compile Include="DetallePedido.aspx.cs">
-      <DependentUpon>DetallePedido.aspx</DependentUpon>
+    <Compile Include="DetallePedidos.aspx.cs">
+      <DependentUpon>DetallePedidos.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="DetallePedido.aspx.designer.cs">
-      <DependentUpon>DetallePedido.aspx</DependentUpon>
+    <Compile Include="DetallePedidos.aspx.designer.cs">
+      <DependentUpon>DetallePedidos.aspx</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
