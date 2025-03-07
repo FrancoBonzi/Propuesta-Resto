@@ -69,6 +69,7 @@ namespace Final_Resto
                 txtIdMesa.Text = "";
                 CargarMesas();
             }
+            else { lblMensaje.Text = "Debe seleccionar un ID Mesa."; }
         }
 
         private void CargarMozos()

@@ -80,7 +80,7 @@ CREATE TABLE DetallePedidos (
 INSERT INTO Productos (Nombre, Descripcion, Categoria, Precio, StockActual, StockMinimo) VALUES 
 
 ('Bruschetta', 'Pan tostado con tomate, ajo y albahaca', 'Entrada', 900.00, 1, 1),
-('Provoleta', 'Queso provolone fundido con especias', 'Entrada', 1200.00,1, 1)),
+('Provoleta', 'Queso provolone fundido con especias', 'Entrada', 1200.00,1, 1),
 ('Empanadas Caprese', 'Masa rellena de tomate, mozzarella y albahaca', 'Entrada', 1100.00,1, 1),
 ('Lasagna Bolognesa', 'Láminas de pasta con carne, bechamel y queso', 'Plato Principal', 2500.00,1, 1),
 ('Risotto de Hongos', 'Arroz cremoso con champiñones y parmesano', 'Plato Principal', 2300.00,1, 1),

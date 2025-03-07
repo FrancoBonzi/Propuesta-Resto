@@ -99,7 +99,7 @@ namespace Negocio
 
             try
             {
-                datos.setearProcedimiento("EliminarMesas");
+                datos.setearConsulta("DELETE FROM Mesas WHERE IdMesa = @Id");
                 datos.setearParametro("@IdMesa", id);
 
                 datos.ejecutarAccion();
@@ -113,6 +113,10 @@ namespace Negocio
                 datos.cerrarConexion();
             }
         }
+
+
+
+
 
 
 

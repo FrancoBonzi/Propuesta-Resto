@@ -71,6 +71,16 @@ namespace Negocio
                 datos.setearParametro("@PrecioUnitario", detalle.PrecioUnitario);
 
                 datos.ejecutarAccion();
+
+
+                datos.limpiarParametros();
+                datos.setearConsulta(@"UPDATE Productos 
+                               SET StockActual = StockActual - @Cantidad 
+                               WHERE IdProducto = @IdProducto AND StockActual >= @Cantidad");
+                datos.setearParametro("@Cantidad", detalle.Cantidad);
+                datos.setearParametro("@IdProducto", detalle.IdProducto);
+
+
             }
             catch (Exception ex)
             {

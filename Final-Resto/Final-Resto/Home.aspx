@@ -23,12 +23,7 @@
                             OnClick="btnReportes_Click" />
                     </td>
                 </tr>
-                <tr>
-                    <td>
-                        <asp:Button ID="btnAsignarMesas" runat="server" Text="Asignación de Mesas" CssClass="btn btn-primary"
-                            OnClick="btnAsingarMesas_Click" />
-                    </td>
-                </tr>   
+
 
                  <tr>
                     <td>

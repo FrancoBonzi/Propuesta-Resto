@@ -21,7 +21,7 @@
                     <asp:TextBox ID="txtNumeroMesa" runat="server" CssClass="form-control mb-2" Placeholder="Numero de Mesa"></asp:TextBox>
                     <asp:TextBox ID="txtCapacidad" runat="server" CssClass="form-control mb-2" Placeholder="Capacidad" TextMode="Number"></asp:TextBox>
 
-                    <asp:Button ID="btnGuardar" runat="server" Text="Guardar Producto" CssClass="btn btn-primary mb-2" OnClick="btnGuardar_Click" />
+                    <asp:Button ID="btnGuardar" runat="server" Text="Guardar Mesa" CssClass="btn btn-primary mb-2" OnClick="btnGuardar_Click" />
                     <asp:Button ID="btnCancelar" runat="server" Text="Cancelar" CssClass="btn btn-secondary mb-2" OnClick="btnCancelar_Click" />
                 </div>
             </div>
