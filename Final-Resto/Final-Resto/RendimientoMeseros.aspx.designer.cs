@@ -11,7 +11,7 @@ namespace Final_Resto
 {
 
 
-    public partial class Reportes
+    public partial class RendimientoMeseros
     {
 
         /// <summary>

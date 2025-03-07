@@ -99,23 +99,20 @@ namespace Negocio
 
             try
             {
-                datos.setearConsulta("DELETE FROM Mesas WHERE IdMesa = @Id");
+                datos.setearConsulta("DELETE FROM Mesas WHERE IdMesa = @IdMesa");
                 datos.setearParametro("@IdMesa", id);
 
                 datos.ejecutarAccion();
             }
-            catch (Exception ex)
+            catch (Exception)
             {
-                throw ex;
+                
             }
             finally
             {
                 datos.cerrarConexion();
             }
         }
-
-
-
 
 
 
