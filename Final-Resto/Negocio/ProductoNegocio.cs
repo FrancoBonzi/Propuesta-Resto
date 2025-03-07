@@ -307,6 +307,31 @@ namespace Negocio
 
         }
 
+        public bool TieneStock(int idProducto, int cantidadRequerida)
+        {
+            AccesoDatos datos = new AccesoDatos();
+            {
+                try
+                {
+                    datos.setearConsulta("SELECT StockActual FROM Productos WHERE IdProducto = @IdProducto");
+                    datos.setearParametro("@IdProducto", idProducto);
+                    datos.EjecutarLectura();
+
+                    if (datos.Lector.Read())
+                    {
+                        int stockActual = Convert.ToInt32(datos.Lector["StockActual"]);
+                        return stockActual >= cantidadRequerida;
+                    }
+
+                    return false;
+                }
+                catch
+                {
+                    return false;
+                }
+            }
+        }
+
 
 
 

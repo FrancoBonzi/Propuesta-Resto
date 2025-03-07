@@ -17,11 +17,6 @@
                     </div>
 
 
-                    <div class="col-md-3">
-                        <asp:Label ID="lblNumeroMesa" runat="server" Text="Número de Mesa:" CssClass="form-label"></asp:Label>
-                        <asp:TextBox ID="txtNumeroMesa" runat="server" CssClass="form-control"></asp:TextBox>
-                    </div>
-
                     <div class="col-md-3 align-self-end">
                         <asp:Button ID="btnFiltrar" runat="server" Text="Filtrar" CssClass="btn btn-primary mx-2" OnClick="btnFiltrar_Click" />
                         <asp:Button ID="btnLimpiar" runat="server" Text="Limpiar" CssClass="btn btn-secondary" OnClick="btnLimpiar_Click" />

@@ -16,7 +16,7 @@ namespace Final_Resto
             }
         }
 
-        private void Rendimiento(string fechaPedido = null, string nombre = null, string numeroMesa = null)
+        private void Rendimiento(string FechaCierre = null, string nombre = null)
         {
             AccesoDatos datos = new AccesoDatos();
             {
@@ -35,10 +35,10 @@ namespace Final_Resto
                         WHERE cast(p.FechaHoraCierre as date) IS NOT NULL";
 
              
-                    if (!string.IsNullOrWhiteSpace(fechaPedido))
+                    if (!string.IsNullOrWhiteSpace(FechaCierre))
                     {
-                        query += " AND CONVERT(VARCHAR, p.FechaHoraCierre, 23) = @FechaPedido";
-                        datos.setearParametro("@FechaPedido", fechaPedido);
+                        query += " AND CONVERT(VARCHAR, p.FechaHoraCierre, 23) = @FechaCierre";
+                        datos.setearParametro("@FechaPedido", FechaCierre);
                     }
 
                     if (!string.IsNullOrWhiteSpace(nombre))
@@ -47,11 +47,7 @@ namespace Final_Resto
                         datos.setearParametro("@Nombre", nombre);
                     }
 
-                    if (!string.IsNullOrWhiteSpace(numeroMesa))
-                    {
-                        query += " AND p.IdMesa IN (SELECT IdMesa FROM Mesas WHERE Numero = @NumeroMesa)";
-                        datos.setearParametro("@NumeroMesa", numeroMesa);
-                    }
+
 
                     query += " GROUP BY cast(p.FechaHoraCierre as date), u.Nombre";
 
@@ -74,16 +70,16 @@ namespace Final_Resto
         {
             string fechaPedido = txtFechaPedido.Text.Trim();
             string nombreMesero = txtNombre.Text.Trim();
-            string numeroMesa = txtNumeroMesa.Text.Trim();
 
-            Rendimiento(fechaPedido, nombreMesero, numeroMesa);
+
+            Rendimiento(fechaPedido, nombreMesero);
         }
 
         protected void btnLimpiar_Click(object sender, EventArgs e)
         {
             txtFechaPedido.Text = string.Empty;
             txtNombre.Text = string.Empty;
-            txtNumeroMesa.Text = string.Empty;
+
 
             Rendimiento();
         }

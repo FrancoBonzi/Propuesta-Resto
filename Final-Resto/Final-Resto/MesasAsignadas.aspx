@@ -12,7 +12,7 @@
             <div class="col">
 <asp:GridView ID="gvMesa" runat="server" AutoGenerateColumns="False" CssClass="table table-striped table-bordered" >
     <Columns>
-
+        <asp:BoundField DataField="IdMesa" HeaderText="ID Mesa" />
         <asp:BoundField DataField="NumeroMesa" HeaderText="Numero de Mesa" />
         <asp:BoundField DataField="CapacidadMesa" HeaderText="Capacidad" />
         <asp:BoundField DataField="Estado" HeaderText="Estado" />

@@ -64,15 +64,22 @@ namespace Final_Resto
                  //   Subtotal = cantidad * producto.Precio
                 };
 
-                DetallePedidoNegocio pedidoNegocio = new DetallePedidoNegocio();
-                pedidoNegocio.AgregarDetallePedido(detalle);
+                if (!productoNegocio.TieneStock(idProducto, cantidad))
+                    {
+                    lblMensaje.Text = "Error no hay stock suficiente";
+                }
+                else {
 
-                productoNegocio.ActualizarStockProducto(idProducto, cantidad);
+                    DetallePedidoNegocio pedidoNegocio = new DetallePedidoNegocio();
+                    pedidoNegocio.AgregarDetallePedido(detalle);
 
-                lblMensaje.Text = "Producto agregado correctamente.";
-                lblMensaje.CssClass = "text-success";
+                    productoNegocio.ActualizarStockProducto(idProducto, cantidad);
 
-                CargarDetallePedido();
+                    lblMensaje.Text = "Producto agregado correctamente.";
+                    lblMensaje.CssClass = "text-success";
+
+                    CargarDetallePedido();
+                }
             }
             catch (Exception ex)
             {
