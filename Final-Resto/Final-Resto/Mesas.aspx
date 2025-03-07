@@ -35,6 +35,7 @@
                         <asp:BoundField DataField="NumeroMesa" HeaderText="Mesa Numero" />
                         <asp:BoundField DataField="CapacidadMesa" HeaderText="Capacidad" />
                         <asp:BoundField DataField="Disponible" HeaderText="Disponible" />
+                        <asp:BoundField DataField="Estado" HeaderText="Estado" />
                     </Columns>
                 </asp:GridView>
             </div>

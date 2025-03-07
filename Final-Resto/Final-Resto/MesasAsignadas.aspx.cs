@@ -75,7 +75,7 @@ namespace Final_Resto
                     int idPedido = obtenerid.ObtenerPedidoAbierto(idMesa);
 
                     Session["idPedido"] = idPedido;
-
+                    CargarMesas();
 
                     Response.Redirect("DetallePedidos.aspx"); }
 
@@ -100,11 +100,11 @@ namespace Final_Resto
                 PedidoNegocio pedidoNegocio = new PedidoNegocio();
 
 
-                pedidoNegocio.CerrarPedido(idMesa, idMozo);
+               if( !pedidoNegocio.CerrarPedido(idMesa, idMozo))
 
-                lblMensaje.Text = "Mesa cerrada con Exito";
-
-
+                { lblMensaje.Text = "No se encontro la mesa para cerrar"; }
+               else { lblMensaje.Text = "Mesa cerrada con Exito"; }
+                CargarMesas();
             }
             catch (Exception ex)
             {
@@ -117,10 +117,26 @@ namespace Final_Resto
         protected void btnAgregarPedido_Click(object sender, EventArgs e)
         {
 
+
+                int idMesa = int.Parse(txtMesa.Text);
+                int idMozo = (int)Session["Id"];
+
+
+
+                    DetallePedidoNegocio obtenerid = new DetallePedidoNegocio();
+                    int idPedido = obtenerid.ObtenerPedidoAbierto(idMesa);
+
+                    Session["idPedido"] = idPedido;
+
+            if(idPedido == -1)
+
+            { lblMensaje.Text = "Esta mesa no se encuentra abierta";}
+
+            else { Response.Redirect("DetallePedidos.aspx"); }
+                   
+
         }
 
-
-
-
     }
+
 }

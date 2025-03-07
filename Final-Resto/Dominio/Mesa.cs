@@ -13,8 +13,8 @@ namespace Dominio
 
         public int NumeroMesa { get; set; }
 
-       
-       public int IdMozo { get; set; } 
+        public string Estado { get; set; }
+        public int IdMozo { get; set; } 
        
         public Usuario usuarioNombre { get; set; }
 

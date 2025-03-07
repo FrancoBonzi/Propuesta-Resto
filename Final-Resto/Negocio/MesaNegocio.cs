@@ -23,6 +23,7 @@ namespace Negocio
                 m.Numero, 
                 m.Capacidad,
                 m.Disponible,
+                m.Estado,
                 u.Id AS IdMozo,
                 u.Nombre AS NombreMozo
             FROM Mesas m
@@ -38,6 +39,7 @@ namespace Negocio
                         NumeroMesa = datos.Lector["Numero"] != DBNull.Value ? Convert.ToInt32(datos.Lector["Numero"]) : 0,
                         CapacidadMesa = datos.Lector["Capacidad"] != DBNull.Value ? Convert.ToInt32(datos.Lector["Capacidad"]) : 0,
                         Disponible = datos.Lector["Disponible"] != DBNull.Value ? Convert.ToInt32(datos.Lector["Disponible"]) : 0,
+                        Estado = datos.Lector["Estado"] != DBNull.Value ? datos.Lector["Estado"].ToString() : "Revisar" ,
                         IdMozo = datos.Lector["IdMozo"] != DBNull.Value ? Convert.ToInt32(datos.Lector["IdMozo"]) : 0
                     };
 
