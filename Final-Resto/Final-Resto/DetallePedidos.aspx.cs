@@ -67,6 +67,8 @@ namespace Final_Resto
                 DetallePedidoNegocio pedidoNegocio = new DetallePedidoNegocio();
                 pedidoNegocio.AgregarDetallePedido(detalle);
 
+                productoNegocio.ActualizarStockProducto(idProducto, cantidad);
+
                 lblMensaje.Text = "Producto agregado correctamente.";
                 lblMensaje.CssClass = "text-success";
 

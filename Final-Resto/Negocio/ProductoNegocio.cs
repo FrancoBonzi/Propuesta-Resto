@@ -280,6 +280,34 @@ namespace Negocio
         }
 
 
+        public void ActualizarStockProducto(int idProducto, int cantidad)
+        {
+            AccesoDatos datos = new AccesoDatos();
+            {
+                try
+                {
+                    datos.setearConsulta(@"UPDATE Productos 
+                                   SET StockActual = StockActual - @Cantidad 
+                                   WHERE IdProducto = @IdProducto AND StockActual >= @Cantidad");
+
+                    datos.setearParametro("@Cantidad", cantidad);
+                    datos.setearParametro("@IdProducto", idProducto);
+
+                    datos.ejecutarAccion(); 
+
+  
+                }
+                catch (Exception ex)
+                {
+                    throw new Exception("Error al actualizar el stock del producto: " + ex.Message);
+                }
+            }
+
+
+
+        }
+
+
 
 
 

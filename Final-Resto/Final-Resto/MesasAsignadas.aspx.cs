@@ -99,8 +99,10 @@ namespace Final_Resto
 
                 PedidoNegocio pedidoNegocio = new PedidoNegocio();
 
+                DetallePedidoNegocio obtenerid = new DetallePedidoNegocio();
+                int idPedido = obtenerid.ObtenerPedidoAbierto(idMesa);
 
-               if( !pedidoNegocio.CerrarPedido(idMesa, idMozo))
+                if ( !pedidoNegocio.CerrarPedido(idMesa, idMozo, idPedido))
 
                 { lblMensaje.Text = "No se encontro la mesa para cerrar"; }
                else { lblMensaje.Text = "Mesa cerrada con Exito"; }

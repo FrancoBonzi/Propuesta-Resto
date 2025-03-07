@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Xml.Schema;
 using Dominio;
 using Final_Resto;
 
@@ -11,9 +12,9 @@ namespace Negocio
     public class PedidoNegocio
     {
 
-            
 
-            public bool AbrirPedido(Pedido nuevo)
+
+        public bool AbrirPedido(Pedido nuevo)
         {
             AccesoDatos datos = new AccesoDatos();
 
@@ -29,7 +30,6 @@ namespace Negocio
                 {
                     datos.cerrarConexion();
                     return false;
-                    
 
                 }
 
@@ -46,7 +46,7 @@ namespace Negocio
                 datos.ejecutarAccion();
                 return true;
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 throw ex;
             }
@@ -56,9 +56,9 @@ namespace Negocio
             }
         }
 
-        public void EliminarPedido (int id)
+        public void EliminarPedido(int id)
         {
-            AccesoDatos datos = new AccesoDatos ();
+            AccesoDatos datos = new AccesoDatos();
 
             try
             {
@@ -66,7 +66,7 @@ namespace Negocio
                 datos.setearParametro("@id", id);
                 datos.ejecutarAccion();
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 throw ex;
             }
@@ -77,13 +77,15 @@ namespace Negocio
         }
 
 
-        public bool CerrarPedido(int IdMesa, int idMozo)
+
+
+          public bool CerrarPedido(int IdMesa, int idMozo, int IdPedido)
         {
             AccesoDatos datos = new AccesoDatos();
 
             try
             {
- 
+
                 datos.setearConsulta(@"
             SELECT COUNT(*) FROM Pedidos p INNER JOIN Mesas m ON p.IdMesa = m.IdMesa WHERE p.IdMesa = @IdMesa AND m.IdMozo = @IdMozo");
 
@@ -103,12 +105,12 @@ namespace Negocio
                     datos.limpiarParametros();
                     datos.cerrarConexion();
 
-                    datos.setearConsulta(@"UPDATE Pedidos SET Estado = @Estado, FechaHoraCierre = GETDATE() , Total = @Total WHERE IdMesa = @IdMesa");
+                    datos.setearConsulta(@"UPDATE Pedidos SET Estado = @Estado, FechaHoraCierre = GETDATE() , Total = @Total WHERE IdMesa = @IdMesa and IdPedido = @IdPedido");
 
                     datos.setearParametro("@IdMesa", IdMesa);
                     datos.setearParametro("@Estado", "Cerrado");
-                    datos.setearParametro("@Total", 100);
-
+                    datos.setearParametro("@IdPedido", IdPedido);
+                    datos.setearParametro("@Total", SumarSubtotal(IdPedido));
                     datos.ejecutarAccion();
                     return true;
                 }
@@ -123,11 +125,34 @@ namespace Negocio
             }
         }
 
+        public decimal SumarSubtotal(int IdPedido)
+        {
+            AccesoDatos datos = new AccesoDatos();
+            {
+                try
+                {
+                    datos.setearConsulta(@"SELECT COALESCE(SUM(Subtotal), 0) FROM DetallePedidos WHERE IdPedido = @IdPedido");
+                    datos.setearParametro("@IdPedido", IdPedido);
+                    datos.EjecutarLectura();
 
-
+                    if (datos.Lector.Read())
+                    {
+                        return Convert.ToDecimal(datos.Lector[0]); 
+                    }
+                    return 0; 
+                }
+                catch (Exception)
+                {
+                    throw new Exception("Error al calcular el subtotal del pedido.");
+                }
+            }
+        }
 
 
 
 
     }
+
 }
+
+
