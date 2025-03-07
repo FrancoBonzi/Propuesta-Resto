@@ -124,7 +124,7 @@ namespace Negocio
 
             try
             {
-                datos.setearConsulta("SELECT IdMesa, IdMozo, Numero, Capacidad, Disponible FROM Mesas WHERE IdMozo = @IdMozo");
+                datos.setearConsulta("SELECT IdMesa, IdMozo, Numero, Capacidad, Disponible, Estado FROM Mesas WHERE IdMozo = @IdMozo");
                 datos.setearParametro("@IdMozo", idMozo);
                 datos.EjecutarLectura();
 
@@ -136,7 +136,8 @@ namespace Negocio
                         IdMozo = Convert.ToInt32(datos.Lector["IdMozo"]),
                         NumeroMesa = Convert.ToInt32(datos.Lector["Numero"]),
                         CapacidadMesa = Convert.ToInt32(datos.Lector["Capacidad"]),
-                        Disponible = Convert.ToInt32(datos.Lector["Disponible"])
+                        Disponible = Convert.ToInt32(datos.Lector["Disponible"]),
+                        Estado = (datos.Lector["Estado"].ToString())
                     };
 
                     lista.Add(aux);

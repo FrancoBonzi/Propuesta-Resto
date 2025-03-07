@@ -8,22 +8,24 @@ namespace Final_Resto
         protected void Page_Load(object sender, EventArgs e)
         {
 
-
-
-
-
-            if (Session["Usuario"] == null)
+            if (!IsPostBack)
             {
-                Response.Redirect("Default.aspx");
+
+
+
+                if (Session["Usuario"] == null)
+                {
+                    Response.Redirect("Default.aspx");
+                }
+
+
+                else if(Session["Rol"] != null && Session["Rol"].ToString() != "Gerente")
+                {
+                    Response.Redirect("MesasAsignadas.aspx");
+
+                }
+
             }
-
-
-            if (Session["Rol"] != null && Session["Rol"].ToString() == "Gerente")
-            {
-                Response.Redirect("Home.aspx");
-            } else { Response.Redirect("MesasAsignadas.aspx"); }
-
-
         }
 
         protected void btnRegistroUsuarios_Click(object sender, EventArgs e)

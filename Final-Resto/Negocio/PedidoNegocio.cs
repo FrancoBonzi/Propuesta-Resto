@@ -11,8 +11,9 @@ namespace Negocio
     public class PedidoNegocio
     {
 
+            
 
-        public bool AbrirPedido(Pedido nuevo)
+            public bool AbrirPedido(Pedido nuevo)
         {
             AccesoDatos datos = new AccesoDatos();
 

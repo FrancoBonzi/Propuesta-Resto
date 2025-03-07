@@ -15,12 +15,21 @@ namespace Final_Resto
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (!IsPostBack) // Evita recargar los productos en cada postback
+            if (!IsPostBack)
             {
                 CargarProductos();
                 CargarDetallePedido();
             }
         }
+
+
+        protected void btnMisMesas_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("MesasAsignadas.aspx");
+        }
+
+
+
 
         private void CargarProductos()
         {

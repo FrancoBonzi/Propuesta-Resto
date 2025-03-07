@@ -118,23 +118,34 @@ namespace Final_Resto
         {
 
 
-                int idMesa = int.Parse(txtMesa.Text);
-                int idMozo = (int)Session["Id"];
+            int idMesa;
+
+            if (string.IsNullOrWhiteSpace(txtMesa.Text) || !int.TryParse(txtMesa.Text, out idMesa ))
+            {
+                lblMensaje.Text = "Ingrese un número de mesa válido.";
+                lblMensaje.CssClass = "text-danger";
+                return;
+            }
 
 
+            int idMozo = (int)Session["Id"];
 
-                    DetallePedidoNegocio obtenerid = new DetallePedidoNegocio();
-                    int idPedido = obtenerid.ObtenerPedidoAbierto(idMesa);
+            if (idMesa == 0) { lblMensaje.Text = "Ingrese una mesa"; }
+            else
+            {
 
-                    Session["idPedido"] = idPedido;
+                DetallePedidoNegocio obtenerid = new DetallePedidoNegocio();
+                int idPedido = obtenerid.ObtenerPedidoAbierto(idMesa);
 
-            if(idPedido == -1)
+                Session["idPedido"] = idPedido;
 
-            { lblMensaje.Text = "Esta mesa no se encuentra abierta";}
+                if (idPedido == -1)
 
-            else { Response.Redirect("DetallePedidos.aspx"); }
-                   
+                { lblMensaje.Text = "Esta mesa no se encuentra abierta"; }
 
+                else { Response.Redirect("DetallePedidos.aspx"); }
+
+            }
         }
 
     }
