@@ -51,8 +51,9 @@ namespace Final_Resto
             {
 
                 int idMesa = int.Parse(txtMesa.Text); 
-                int idMozo = (int)Session["Id"]; 
+                int idMozo = (int)Session["Id"];
 
+                
    
                 Pedido nuevoPedido = new Pedido
                 {
@@ -71,6 +72,8 @@ namespace Final_Resto
 
                 else
                 {
+                    negocio.EstadoAbierto(idMesa);
+
                     DetallePedidoNegocio obtenerid = new DetallePedidoNegocio();
                     int idPedido = obtenerid.ObtenerPedidoAbierto(idMesa);
 
@@ -100,13 +103,19 @@ namespace Final_Resto
                 PedidoNegocio pedidoNegocio = new PedidoNegocio();
 
                 DetallePedidoNegocio obtenerid = new DetallePedidoNegocio();
+                
                 int idPedido = obtenerid.ObtenerPedidoAbierto(idMesa);
 
-                if ( !pedidoNegocio.CerrarPedido(idMesa, idMozo, idPedido))
+                if (!pedidoNegocio.CerrarPedido(idMesa, idMozo, idPedido))
 
                 { lblMensaje.Text = "No se encontro la mesa para cerrar"; }
-               else { lblMensaje.Text = "Mesa cerrada con Exito"; }
-                CargarMesas();
+
+
+                else {
+                     negocio.EstadoCerrado(idMesa);
+                     lblMensaje.Text = "Mesa cerrada con Exito";
+                    CargarMesas();
+                }
             }
             catch (Exception ex)
             {

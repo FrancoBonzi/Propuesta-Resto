@@ -13,6 +13,8 @@
                 <asp:TextBox ID="txtCantidad" runat="server" CssClass="form-control mb-2" Placeholder="Cantidad" TextMode="Number"></asp:TextBox>
                 <asp:Button ID="btnAgregarProducto" runat="server" Text="Agregar al Pedido" CssClass="btn btn-primary" OnClick="btnAgregarProducto_Click" />
                 <asp:Button ID="btnMisMesas" runat="server" Text="Volver a Mis Mesas" CssClass="btn btn-primary" OnClick="btnMisMesas_Click" />
+                <asp:TextBox ID="txtEliminar" runat="server" CssClass="form-control mb-2" Placeholder="ID Detalle" TextMode="Number"></asp:TextBox>
+                <asp:Button ID="btnEliminarDetalle" runat="server" Text="Eliminar" CssClass="btn btn-primary" OnClick="btnEliminarDetalle_Click" />
             </div>
         </div>
 

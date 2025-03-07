@@ -44,6 +44,8 @@ namespace Negocio
                 datos.setearParametro("@Estado", "Abierto");
 
                 datos.ejecutarAccion();
+
+
                 return true;
             }
             catch (Exception ex)

@@ -181,6 +181,34 @@ namespace Negocio
             }
         }
 
+        public void EstadoAbierto(int IdMesa)
+        {
+            AccesoDatos datos = new AccesoDatos();
+
+
+            datos.setearConsulta(@"UPDATE Mesas SET Estado = 'Abierto' WHERE IdMesa = @IdMesa");
+
+            datos.setearParametro("@IdMesa", IdMesa);
+
+            datos.ejecutarAccion();
+
+        }
+
+        public void EstadoCerrado(int IdMesa)
+        {
+            AccesoDatos datos = new AccesoDatos();
+
+            datos.limpiarParametros();
+            datos.cerrarConexion();
+
+
+            datos.setearConsulta(@"UPDATE Mesas SET Estado = 'Cerrado' WHERE IdMesa = @IdMesa");
+
+            datos.setearParametro("@IdMesa", IdMesa);
+
+            datos.ejecutarAccion();
+
+        }
 
     }
 }

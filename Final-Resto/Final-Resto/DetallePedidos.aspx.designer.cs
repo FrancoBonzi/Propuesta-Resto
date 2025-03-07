@@ -69,6 +69,24 @@ namespace Final_Resto
         protected global::System.Web.UI.WebControls.Button btnMisMesas;
 
         /// <summary>
+        /// Control txtEliminar.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtEliminar;
+
+        /// <summary>
+        /// Control btnEliminarDetalle.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnEliminarDetalle;
+
+        /// <summary>
         /// Control gvDetallePedido.
         /// </summary>
         /// <remarks>

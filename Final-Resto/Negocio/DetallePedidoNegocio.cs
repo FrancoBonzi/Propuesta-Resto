@@ -90,9 +90,6 @@ namespace Negocio
 
 
 
-
-
-
         public int ObtenerPedidoAbierto(int idMesa)
         {
             AccesoDatos datos = new AccesoDatos();
@@ -116,6 +113,26 @@ namespace Negocio
             finally
             {
                 datos.cerrarConexion(); 
+            }
+        }
+
+        public void EliminarDetallePedido(int id)
+        {
+            AccesoDatos datos = new AccesoDatos();
+
+            try
+            {
+                datos.setearConsulta("DELETE FROM DetallePedidos WHERE IdDetalle=@id");
+                datos.setearParametro("@id", id);
+                datos.ejecutarAccion();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                datos.cerrarConexion();
             }
         }
 

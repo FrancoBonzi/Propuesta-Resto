@@ -13,6 +13,8 @@ namespace Final_Resto
     public partial class DetallePedidos : Page
     {
 
+        DetallePedidoNegocio detalleNegocio = new DetallePedidoNegocio();
+
 
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -105,6 +107,20 @@ namespace Final_Resto
             gvDetallePedido.DataSource = detalles;
             gvDetallePedido.DataBind();
         }
+
+        protected void btnEliminarDetalle_Click(object sender, EventArgs e)
+        {
+
+                if (!string.IsNullOrWhiteSpace(txtEliminar.Text))
+                {
+                     detalleNegocio.EliminarDetallePedido(int.Parse(txtEliminar.Text));
+                     txtEliminar.Text = "";
+                     CargarDetallePedido();
+                }
+                else { lblMensaje.Text = "Debe seleccionar un ID Detalle."; }
+
+        }
+
 
 
     }
